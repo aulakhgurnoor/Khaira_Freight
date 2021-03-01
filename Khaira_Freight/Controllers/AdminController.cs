@@ -532,7 +532,7 @@ namespace Khaira_Freight.Controllers
         //PAY-----------------------------------------------------------
         public ActionResult ManagePay()
         {
-            return View(GetFiles());
+            return View(GetPayFiles());
         }
 
         [HttpPost]
