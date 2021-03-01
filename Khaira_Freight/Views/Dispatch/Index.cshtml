@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Khaira_Freight.Models.truck>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.plate_number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.registration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vin_number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.make)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.weight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.owner_company)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.driver)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.last_location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.last_trip)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.plate_number)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.registration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vin_number)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.make)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.weight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.owner_company)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.driver)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.last_location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.last_trip)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.unit_number }) |
+            @Html.ActionLink("Details", "Details", new { id=item.unit_number }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.unit_number })
+        </td>
+    </tr>
+}
+
+</table>

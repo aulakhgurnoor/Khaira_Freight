@@ -1,0 +1,113 @@
+﻿@model Khaira_Freight.Models.truck
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>truck</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.unit_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.unit_number)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.plate_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.plate_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.registration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.registration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vin_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vin_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.make)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.make)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.weight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.owner_company)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.owner_company)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.driver)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.driver)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.last_location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.last_location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.last_trip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.last_trip)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.unit_number }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

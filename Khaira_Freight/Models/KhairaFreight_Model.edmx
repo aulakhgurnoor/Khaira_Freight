@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="KhairaFreightModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="dispatch">
+          <Key>
+            <PropertyRef Name="dispatch_id" />
+          </Key>
+          <Property Name="dispatch_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="postal_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="province" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="dob" Type="date" Nullable="false" />
+          <Property Name="nationality" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="gender" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="driver_application">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ContentType" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Data" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee_login">
+          <Key>
+            <PropertyRef Name="emp_id" />
+          </Key>
+          <Property Name="emp_id" Type="int" Nullable="false" />
+          <Property Name="department" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pay_statement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ContentType" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Data" Type="varbinary(max)" Nullable="false" />
+          <Property Name="emp_id" Type="int" Nullable="false" />
+          <Property Name="department" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="table_driver">
+          <Key>
+            <PropertyRef Name="driver_id" />
+          </Key>
+          <Property Name="driver_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="postal_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="province" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="corporation" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="dob" Type="date" Nullable="false" />
+          <Property Name="nationality" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="gender" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="pp_number" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="license_number" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="license_expiry" Type="date" Nullable="false" />
+          <Property Name="medical_date" Type="date" Nullable="false" />
+          <Property Name="rate" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="rate_team" Type="decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="truck">
+          <Key>
+            <PropertyRef Name="unit_number" />
+          </Key>
+          <Property Name="unit_number" Type="int" Nullable="false" />
+          <Property Name="plate_number" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="registration" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="vin_number" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="make" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+          <Property Name="weight" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="owner_company" Type="varchar" MaxLength="100" />
+          <Property Name="driver" Type="varchar" MaxLength="50" />
+          <Property Name="last_location" Type="varchar" MaxLength="50" />
+          <Property Name="last_trip" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="add_driver" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="first_name" Type="varchar" Mode="In" />
+          <Parameter Name="last_name" Type="varchar" Mode="In" />
+          <Parameter Name="address" Type="varchar" Mode="In" />
+          <Parameter Name="postal_code" Type="varchar" Mode="In" />
+          <Parameter Name="city" Type="varchar" Mode="In" />
+          <Parameter Name="province" Type="varchar" Mode="In" />
+          <Parameter Name="corporation" Type="varchar" Mode="In" />
+          <Parameter Name="phone" Type="varchar" Mode="In" />
+          <Parameter Name="dob" Type="date" Mode="In" />
+          <Parameter Name="nationality" Type="varchar" Mode="In" />
+          <Parameter Name="gender" Type="varchar" Mode="In" />
+          <Parameter Name="pp_number" Type="varchar" Mode="In" />
+          <Parameter Name="license_number" Type="varchar" Mode="In" />
+          <Parameter Name="license_expiry" Type="date" Mode="In" />
+          <Parameter Name="medical_date" Type="date" Mode="In" />
+          <Parameter Name="rate" Type="decimal" Mode="In" />
+          <Parameter Name="rate_team" Type="decimal" Mode="In" />
+          <Parameter Name="driver_id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="select_driver" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="driver_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="selectAll_driverId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="KhairaFreightModelStoreContainer">
+          <EntitySet Name="dispatch" EntityType="Self.dispatch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="driver_application" EntityType="Self.driver_application" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employee_login" EntityType="Self.employee_login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pay_statement" EntityType="Self.pay_statement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="table_driver" EntityType="Self.table_driver" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="truck" EntityType="Self.truck" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KhairaFreightModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="employee_login">
+          <Key>
+            <PropertyRef Name="emp_id" />
+          </Key>
+          <Property Name="emp_id" Type="Int32" Nullable="false" />
+          <Property Name="department" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="table_driver">
+          <Key>
+            <PropertyRef Name="driver_id" />
+          </Key>
+          <Property Name="driver_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="postal_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="province" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="corporation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dob" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="nationality" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pp_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="license_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="license_expiry" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="medical_date" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="rate" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="rate_team" Type="Decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="truck">
+          <Key>
+            <PropertyRef Name="unit_number" />
+          </Key>
+          <Property Name="unit_number" Type="Int32" Nullable="false" />
+          <Property Name="plate_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="registration" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="vin_number" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="make" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="year" Type="Int32" Nullable="false" />
+          <Property Name="weight" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="owner_company" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="driver" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="last_location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="last_trip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="KhairaFreightEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="employee_login" EntityType="Self.employee_login" />
+          <EntitySet Name="table_driver" EntityType="Self.table_driver" />
+          <EntitySet Name="trucks" EntityType="Self.truck" />
+          <FunctionImport Name="add_driver">
+            <Parameter Name="first_name" Mode="In" Type="String" />
+            <Parameter Name="last_name" Mode="In" Type="String" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="postal_code" Mode="In" Type="String" />
+            <Parameter Name="city" Mode="In" Type="String" />
+            <Parameter Name="province" Mode="In" Type="String" />
+            <Parameter Name="corporation" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="dob" Mode="In" Type="DateTime" />
+            <Parameter Name="nationality" Mode="In" Type="String" />
+            <Parameter Name="gender" Mode="In" Type="String" />
+            <Parameter Name="pp_number" Mode="In" Type="String" />
+            <Parameter Name="license_number" Mode="In" Type="String" />
+            <Parameter Name="license_expiry" Mode="In" Type="DateTime" />
+            <Parameter Name="medical_date" Mode="In" Type="DateTime" />
+            <Parameter Name="rate" Mode="In" Type="Decimal" />
+            <Parameter Name="rate_team" Mode="In" Type="Decimal" />
+            <Parameter Name="driver_id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="select_driver" ReturnType="Collection(KhairaFreightModel.select_driver_Result)">
+          <Parameter Name="driver_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="selectAll_driverId" ReturnType="Collection(Int32)" />
+          <EntitySet Name="dispatches" EntityType="KhairaFreightModel.dispatch" />
+          <EntitySet Name="driver_application" EntityType="KhairaFreightModel.driver_application" />
+          <EntitySet Name="pay_statement" EntityType="KhairaFreightModel.pay_statement" />
+        </EntityContainer>
+        <ComplexType Name="select_driver_Result">
+          <Property Type="Int32" Name="driver_id" Nullable="false" />
+          <Property Type="String" Name="first_name" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="last_name" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <EntityType Name="dispatch">
+          <Key>
+            <PropertyRef Name="dispatch_id" />
+          </Key>
+          <Property Name="dispatch_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="postal_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="province" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="dob" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="nationality" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="driver_application">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContentType" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Data" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="pay_statement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContentType" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Data" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="emp_id" Type="Int32" Nullable="false" />
+          <Property Name="department" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KhairaFreightModelStoreContainer" CdmEntityContainer="KhairaFreightEntities">
+          <EntitySetMapping Name="employee_login">
+            <EntityTypeMapping TypeName="KhairaFreightModel.employee_login">
+              <MappingFragment StoreEntitySet="employee_login">
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+                <ScalarProperty Name="department" ColumnName="department" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="table_driver">
+            <EntityTypeMapping TypeName="KhairaFreightModel.table_driver">
+              <MappingFragment StoreEntitySet="table_driver">
+                <ScalarProperty Name="driver_id" ColumnName="driver_id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="postal_code" ColumnName="postal_code" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="province" ColumnName="province" />
+                <ScalarProperty Name="corporation" ColumnName="corporation" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="nationality" ColumnName="nationality" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="pp_number" ColumnName="pp_number" />
+                <ScalarProperty Name="license_number" ColumnName="license_number" />
+                <ScalarProperty Name="license_expiry" ColumnName="license_expiry" />
+                <ScalarProperty Name="medical_date" ColumnName="medical_date" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="rate_team" ColumnName="rate_team" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trucks">
+            <EntityTypeMapping TypeName="KhairaFreightModel.truck">
+              <MappingFragment StoreEntitySet="truck">
+                <ScalarProperty Name="unit_number" ColumnName="unit_number" />
+                <ScalarProperty Name="plate_number" ColumnName="plate_number" />
+                <ScalarProperty Name="registration" ColumnName="registration" />
+                <ScalarProperty Name="vin_number" ColumnName="vin_number" />
+                <ScalarProperty Name="make" ColumnName="make" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="weight" ColumnName="weight" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="owner_company" ColumnName="owner_company" />
+                <ScalarProperty Name="driver" ColumnName="driver" />
+                <ScalarProperty Name="last_location" ColumnName="last_location" />
+                <ScalarProperty Name="last_trip" ColumnName="last_trip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="add_driver" FunctionName="KhairaFreightModel.Store.add_driver" />
+          <FunctionImportMapping FunctionImportName="select_driver" FunctionName="KhairaFreightModel.Store.select_driver">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KhairaFreightModel.select_driver_Result">
+                <ScalarProperty Name="driver_id" ColumnName="driver_id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="selectAll_driverId" FunctionName="KhairaFreightModel.Store.selectAll_driverId" />
+          <EntitySetMapping Name="dispatches">
+            <EntityTypeMapping TypeName="KhairaFreightModel.dispatch">
+              <MappingFragment StoreEntitySet="dispatch">
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="nationality" ColumnName="nationality" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="province" ColumnName="province" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="postal_code" ColumnName="postal_code" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="dispatch_id" ColumnName="dispatch_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="driver_application">
+            <EntityTypeMapping TypeName="KhairaFreightModel.driver_application">
+              <MappingFragment StoreEntitySet="driver_application">
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pay_statement">
+            <EntityTypeMapping TypeName="KhairaFreightModel.pay_statement">
+              <MappingFragment StoreEntitySet="pay_statement">
+                <ScalarProperty Name="department" ColumnName="department" />
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
