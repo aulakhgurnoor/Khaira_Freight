@@ -1,0 +1,173 @@
+﻿@model Khaira_Freight.Models.quote
+
+@{
+    ViewBag.Title = "Delete Quote";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<style>
+      #btn_style {
+            color: #494949 !important;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: #ffffff;
+            padding: 20px;
+            border: 4px solid #494949 !important;
+            display: inline-block;
+            transition: all 0.4s ease 0s;
+        }
+
+            #btn_style:hover {
+                color: #ffffff !important;
+                background: #f6b93b;
+                border-color: #f6b93b !important;
+                transition: all 0.4s ease 0s;
+            }
+</style>
+<div style=" width:600px;       background-color:lavender;
+        padding: 30px;
+        margin: 50px auto;
+        box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+        border-radius: 10px;
+        border: 6px solid #305A72;
+         min-width:min-content;
+        ">
+    <h2 id="btn_style">Delete Quote</h2>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.full_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.full_name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.street_address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.street_address)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.city)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.city)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.postal_code)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.postal_code)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.province)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.province)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.pickup_location)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.pickup_location)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.pickup_date)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.pickup_date)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.drop_location)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.drop_location)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.drop_date)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.drop_date)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.equipment_type)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.equipment_type)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.weight)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.weight)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.commodity)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.commodity)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-primary" />
+
+            </div>
+            <br />
+            <div class="form-actions no-color">
+
+                <button class="btn btn-default">
+                    @Html.ActionLink("Back to List", "DisplayQuote")
+                </button>
+
+            </div>
+        }
+    </div>
+    </div>

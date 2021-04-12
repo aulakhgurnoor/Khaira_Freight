@@ -1,17 +1,291 @@
-﻿@{
+﻿@model Khaira_Freight.Models.feedback
+
+@{
     ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <style>
+            #required:after {
+                content: " *";
+                color: #f00;
+            }
+            body{            font-family: Arial, Helvetica, sans-serif;
+                             background-attachment: fixed;
+                             background-size: cover;
+                               background-image: url('../../Content/images/annie-spratt-0ZPSX_mQ3xI-unsplash.jpg');
+                           /*background-color: #F1F1EF;*/
+                           /*background-color: #b2cecf;*/
+                       
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+}
+
+
+            #btn_style {
+                color: #494949 !important;
+                text-decoration: none;
+                background: #ffffff;
+                border: 1px solid #494949 !important;
+                display: inline-block;
+                transition: all 0.4s ease 0s;
+            }
+
+                #btn_style:hover {
+                    color: #ffffff !important;
+                    background: #f6b93b;
+                    border-color: #f6b93b !important;
+                    transition: all 0.4s ease 0s;
+                }
+
+
+
+            .container {
+                border-radius: 5px;
+                /*background-color: #f2f2f2;*/
+                padding: 10px;
+                /*margin-left:50px;*/
+            }
+
+            /* Create two columns that float next to eachother */
+            .column {
+                float: left;
+                width: 50%;
+                margin-top: 6px;
+                padding: 50px;
+                min-width:min-content;
+            }
+
+            /* Clear floats after the columns */
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+             body {
+            /*background-color:floralwhite;*/
+        }
+
+            #map {
+                padding-left: 50px;
+                  min-width:min-content;
+                  
+            }
+
+            /* Float three columns side by side */
+            .column1 {
+                float: left;
+                width: 30%;
+                padding: 0 10px;
+                padding-left: 150px;
+            }
+
+            /* Remove extra left and right margins, due to padding */
+            .row1 {
+                margin: 0 -5px;
+            }
+
+                /* Clear floats after the columns */
+                .row1:after {
+                    content: "";
+                    display: table;
+                    clear: both;
+                }
+
+
+
+
+            /* Style the counter cards */
+            .card {
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+                padding: 16px;
+                text-align: center;
+                background-color: #f1f1f1;
+                /*height: 250px;*/
+                min-width: fit-content;
+                min-height: 280px;
+            }
+                #displayInfo:hover
+         {
+                     color: #ffffff !important;
+                background: #bccbde;
+                border-color: #bccbde !important;
+                transition: all 0.4s ease 0s;
+            }
+                     .card:hover
+         {
+                     color: #ffffff !important;
+                background: #bccbde;
+                border-color: #bccbde !important;
+                transition: all 0.4s ease 0s;
+            }
+        </style>
+    </head>
+        <body>
+            <div id="body">
+                <div id="container"></div>
+                <div class="row">
+                    <div class="column">
+                        <div id="displayInfo" style="border:6px solid #305A72;min-width:min-content;min-height:400px;">
+                            <h2 style="font-size: 24pt;padding-left: 50px;color: #f6b93b">Get in touch</h2>
+
+                            <p style="        font-weight: bold;
+        font-size: 24pt;
+        padding-left: 50px;">
+                                Feel free to talk to our representative at any time you please use our contact form on our
+                                website or one of our contact numbers.
+                            </p>
+
+                        </div>
+                        </div>
+                        <div class="column">
+                            <div id="displayInfo" style="border:6px solid #305A72;width:500px;height:400px;">
+                                <h2 style="text-align:center;padding-top:30px;color: #f6b93b">Working hours</h2>
+                                <br />
+                                <p style="padding-left: 60px;padding-top:20px;font-size:20px;"><b>Monday:</b> 9 am - 17 pm</p>
+                                <p style="padding-left: 60px;font-size:20px;"><b>Tuesday:</b> 9 am - 18 pm</p>
+                                <p style="padding-left: 60px;font-size:20px;"><b>Wednesday:</b> 9 am - 18 pm</p>
+                                <p style="padding-left: 60px;font-size:20px;"><b>Friday:</b> 10 am - 16 pm</p>
+                                <p style="padding-left: 60px;font-size:20px;"><b>Sat & Sunday:</b> Closed</p>
+                            </div>
+
+
+                        </div>
+                    </div>
+            </div>
+            <div id="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16714.443327158453!2d-80.31839831413711!3d43.3876143114822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb61b906068cb9fec!2sGolden%20Bird%20Trucking%20Inc.!5e0!3m2!1sen!2sca!4v1617938409033!5m2!1sen!2sca"
+                        width="1400" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <br />
+            <div class="row1">
+                <div class="column1">
+                    <div class="card">
+                        <img src="~/Content/images/loc.png" alt="Fjords" width="80"><br /><br />
+                        <p></p>
+                        <p>1339 Industrial Road, Cambridge</p>
+                        <p>ON N3H 4W3. Canada</p>
+                    </div>
+                </div>
+
+                <div class="column1">
+                    <div class="card">
+                        <img src="~/Content/images/p1.png" alt="Fjords" width="80"><br /><br />
+                        <p>519-219-2929</p>
+
+                    </div>
+                </div>
+
+                <div class="column1">
+                    <div class="card">
+                        <img src="~/Content/images/e1.png" alt="Fjords" width="140"><br /><br />
+                        <p>dispatch@khairafreight.com</p>
+                        <p>safety@khairafreight.com</p>
+                        <p>logistics@khairafreight.com</p>
+                        <p>accounts@khairafreight.com</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container body-content">
+                <h1 style="font-weight:bold;text-align:center;">Leave your message</h1>
+                <br />
+                <p style="text-align:center;font-size:20px;">
+                    If you have any questions about the services we provide simply use the form below. We try and respond to all<br />
+                    queries and comments within 24 hours.
+                </p>
+
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal  breadcrumb" style="        background-color:lightgray;
+        padding: 30px;
+        margin: 50px auto;
+        box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+        border-radius: 10px;
+
+        min-width:min-content;">
+
+
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.full_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.full_name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.full_name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.message_subject, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.message_subject, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.message_subject, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.message_body, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.message_body, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.message_body, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        @*<div class="form-group">
+                            @Html.LabelFor(model => model.added_on, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.added_on, new { @readonly = "readonly" })
+
+                                @Html.ValidationMessageFor(model => model.added_on, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Submit" class="btn btn-primary" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button id="btn_style">
+                                    @Html.ActionLink("Back to Home", "Index")
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                }
+
+
+            </div>
+        </body>
+        </html>
+
+

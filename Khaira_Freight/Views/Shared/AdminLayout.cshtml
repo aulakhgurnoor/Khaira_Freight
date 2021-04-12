@@ -3,117 +3,226 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Admin</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style>
-body {
-  font-family: "Lato", sans-serif;
-  transition: background-color .5s;
-}
 
-.sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
+        body {
+            -webkit-text-stroke-width: 0.3px;
+            font-family: "Lato", sans-serif;
+            background-image: url('../../Content/images/laura-davidson-QBAH4IldaZY-unsplash.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            /*width: 160px;
+            height: 160px;
+            color: black;
+            resize: both;
+            overflow: scroll;*/
+        }
+        .body-content {
+            padding-left: 0;
+            padding-right: 0;
+            margin: 0;
+        }
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
 
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
+            .sidenav a {
+                padding: 8px 8px 8px 32px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #818181;
+                display: block;
+                transition: 0.3s;
+            }
 
-.sidenav a:hover {
-  color: #f1f1f1;
-}
+                .sidenav a:hover {
+                    color: #f1f1f1;
+                }
 
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-  padding-top:50px;
-}
+            .sidenav .closebtn {
+                position: absolute;
+                top: 0;
+                right: 25px;
+                font-size: 36px;
+                margin-left: 50px;
+                padding-top: 50px;
+            }
 
-#main {
-  transition: margin-left .5s;
-  padding: 16px;
-}
+        #main {
+            padding: 25px;
+            padding-bottom: 50px;
+        }
 
-@*@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}*@
+        .flex-wrapper {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        @@media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+                .sidenav a {
+                    font-size: 18px;
+                }
+        }
+
+        .copyright-footer {
+            width:auto;
+            color: black;
+            background-color:transparent;
+            text-align: center;
+            height: 50px;
+            padding-top: 15px;
+            margin-bottom: 0;
+        }
+                    #btnstyle {
+        font-size: 30px;
+        cursor: pointer;
+        background: linear-gradient(to right, #e0eafc, #cfdef3);
+        padding: 5px;
+        box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+        border-radius: 10px;
+        border: 6px solid #305A72;
+    }
+
+        #btnstyle:hover {
+            color: #ffffff !important;
+            background: #f6b93b;
+            border-color: #f6b93b !important;
+            transition: all 0.4s ease 0s;
+        }
     </style>
 </head>
 <body>
 
-    <nav class="navbar  navbar-inverse navbar-dark navbar-fixed-top bg-dark">
-        <div class="container-fluid">
+    @*<nav class="navbar  navbar-inverse navbar-dark navbar-fixed-top bg-dark">*@
+        <nav class="navbar navbar-custom navbar-expand-lg  navbar-fixed-top ">
+            <div class="container-fluid">
 
-            <a class="navbar-brand" href="#"><img src="~/Content/images/logo_khaira_freight_dark_blue.png" alt="logo" style="width:120px; height:30px;" /></a>
-            <div class="navbar-collapse collapse" id="navbarSupportedContent">
-                <ul class="nav navbar-nav navbar-right mr-auto">
-                    <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="/Home/About" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="/Admin/Admin" class="nav-link">Admin</a></li>
-                    <li class="nav-item"><a href="/Home/Contact" class="nav-link">Contact</a></li>
-                    <li class="nav-item"><a href="/Home/Team" class="nav-link">Our team</a></li>
-                    <li class="nav-item"><a href="/Home/Apply" class="nav-link">Careers</a></li>
-                </ul>
+                <a class="navbar-brand" href="#"><img src="~/Content/images/logo_khaira_freight_dark_blue.png" alt="logo" style="width:120px; height:30px;" /></a>
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav navbar-right mr-auto">
+                        @*<li class="nav-item"><a href="/Admin/Dashboard" class="nav-link">Home</a></li>
+
+
+                        <li class="nav-item"><a href="/Admin/IndexDispatch" class="nav-link">Dispatchers</a></li>
+
+                        <li class="nav-item"><a href="/Admin/Index" class="nav-link">Drivers</a></li>
+                        <li class="nav-item"><a href="/Admin/IndexLogin" class="nav-link">Users</a></li>
+                        <li class="nav-item"><a href="/Admin/ViewFeedback" class="nav-link">Feedback</a></li>
+                        <li class="nav-item"><a href="/Admin/ManagePay" class="nav-link">ManagePay</a></li>
+                        <li class="nav-item">                    <a href="/Admin/DisplayQuote">View Quote</a></li>*@
+
+                        @*Logout*@
+                        <li class="nav-item">
+                            <a href="#" onclick="document.forms[0].submit();">Logout</a>
+                            @*Logout*@
+                    </ul>
+                </div>
             </div>
+        </nav>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="/Admin/Dashboard">Home</a>
+            <a href="/Admin/Index">Drivers</a>
+            <a href="/Admin/IndexDispatch">Dispatchers</a>
+            <a href="/Admin/IndexLogin">Registration</a>
+            <a href="/Admin/ManagePay">Pay Statement</a>
+            <a href="/Admin/DriverApplication">View Driver Form</a>
+            <a href="/Admin/DisplayQuote">View Quote</a>
+            <a href="/Admin/ViewFeedback">Feedback</a>
+            @*Logout*@
+            <a href="#" onclick="document.forms[0].submit();">Logout</a>
+            @*Logout*@
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
         </div>
-    </nav>
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">Dashboard</a>
-        <a href="/Admin/Index">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="flex-wrapper">
+            <div id="main">
+                <h3 style="        background: linear-gradient(to right, #e0eafc, #cfdef3);
+        padding: 5px;
+        margin-top: 0;
+        box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+        border-radius: 10px;
+        border: 6px solid #305A72;
+        float: right;">
+                    @*Welcome*@
+                    <b>@HttpContext.Current.User.Identity.Name</b>
+                </h3>
+                <span id="btnstyle" onclick="openNav()">&#9776; </span>
+                <br />
+                @*Logout*@
 
-    </div>
+                <br />
+                <br />
+                @using (Html.BeginForm("Logout", "Home", FormMethod.Post))
+                {
 
-    <div id="main">
-        <h2>ADMIN</h2>
-        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
-    </div>
+                }
+                @*Logout*@
+                <div class="container body-content">
+                    @RenderBody()
 
-    <script>
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
-            document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-        }
 
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
-            document.body.style.backgroundColor = "white";
-        }
-    </script>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+                </div>
+
+            </div>
+
+            <script>
+                function openNav() {
+                    document.getElementById("mySidenav").style.width = "250px";
+                    document.getElementById("main").style.marginLeft = "250px";
+                    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+                }
+
+                function closeNav() {
+                    document.getElementById("mySidenav").style.width = "0";
+                    document.getElementById("main").style.marginLeft = "0";
+                    document.body.style.backgroundColor = "white";
+                }
+            </script>
+            @*<div class="container body-content">
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                </footer>
+            </div>*@
+            <div class="copyright-footer">
+                <div class="container">
+                    <div class="row">
+                        <p class="copyright">Khaira Freight &copy; @DateTime.Now.Year  All rights reserved</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
 </body>
 </html>

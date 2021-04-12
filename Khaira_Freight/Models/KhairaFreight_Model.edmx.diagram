@@ -5,12 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1b7e6225cc1f485d8e5dde60f376013b" Name="Diagram1">
-        <EntityTypeShape EntityType="KhairaFreightModel.employee_login" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="KhairaFreightModel.table_driver" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="KhairaFreightModel.truck" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="KhairaFreightModel.dispatch" Width="1.5" PointX="5.375" PointY="5.75" />
         <EntityTypeShape EntityType="KhairaFreightModel.driver_application" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="KhairaFreightModel.pay_statement" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="KhairaFreightModel.planner" Width="1.5" PointX="7.375" PointY="7.75" />
+        <EntityTypeShape EntityType="KhairaFreightModel.RoleTable" Width="1.5" PointX="9.75" PointY="1.5" />
+        <EntityTypeShape EntityType="KhairaFreightModel.UserActivate" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="KhairaFreightModel.UserTable" Width="1.5" PointX="12" PointY="1" />
+        <AssociationConnector Association="KhairaFreightModel.FK_UserTable_RoleTable" />
+        <EntityTypeShape EntityType="KhairaFreightModel.feedback" Width="1.5" PointX="3.375" PointY="9.75" />
+        <EntityTypeShape EntityType="KhairaFreightModel.quote" Width="1.5" PointX="9.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

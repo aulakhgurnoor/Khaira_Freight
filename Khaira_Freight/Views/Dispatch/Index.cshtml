@@ -1,93 +1,153 @@
-﻿@model IEnumerable<Khaira_Freight.Models.truck>
+﻿@*@model IEnumerable<Khaira_Freight.Models.truck>*@
+@model PagedList.IPagedList<Khaira_Freight.Models.truck>
+@using PagedList.Mvc;
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Truck List";
 }
+<style>
 
-<h2>Index</h2>
+    #btn_style {
+        color: #494949 !important;
+        text-transform: uppercase;
+        text-decoration: none;
+        background: #ffffff;
+        padding: 20px;
+        border: 4px solid #494949 !important;
+        display: inline-block;
+        transition: all 0.4s ease 0s;
+    }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.plate_number)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.registration)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.vin_number)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.make)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.year)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.weight)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.owner_company)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.driver)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.last_location)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.last_trip)
-        </th>
-        <th></th>
-    </tr>
+        #btn_style:hover {
+            color: #ffffff !important;
+            background: #f6b93b;
+            border-color: #f6b93b !important;
+            transition: all 0.4s ease 0s;
+        }
+</style>
+<div style=" width:100%;       background-color:lavender;
+    padding: 30px;
+    margin: 50px auto;
+    box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    border: 6px solid #305A72;
+    min-width:min-content;
+    ">
+    <h2 id="btn_style">Truck List</h2>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.plate_number)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.registration)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.vin_number)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.make)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.year)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.weight)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.owner_company)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.driver)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.last_location)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.last_trip)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.unit_number }) |
-            @Html.ActionLink("Details", "Details", new { id=item.unit_number }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.unit_number })
-        </td>
-    </tr>
-}
+    <p>
+        @Html.ActionLink("Add New", "Create")
+    </p>
+    @using (Html.BeginForm("Index", "Dispatch", FormMethod.Get))
+    {
+        <p>
+            Search by Plate No./VIN/Make : @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input class="btn btn-primary" type="submit" value="Search" />
+        </p>
+    }
+    <table class="table table-striped breadcrumb" >
+        <tr>
+            <th>
+                Unit Number
+            </th>
+            <th>
+                Plate Number
+            </th>
+            <th>
+                Registration
+            </th>
+            <th>
+                VIN
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.make)
+                </th>*@
+            <th>
+                @Html.ActionLink("Make", "Index", new { sortOrder = ViewBag.MakeSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.year)
+                </th>*@
+            <th>
+                @Html.ActionLink("Year", "Index", new { sortOrder = ViewBag.YearSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            @*<th>
+                Weight
+            </th>*@
+            <th>
+                Status
+            </th>
+            @*<th>
+                Owner Company
+            </th>*@
+            <th>
+                Driver
+            </th>
+            <th>
+                Last Location
+            </th>
+            @*<th>
+                Last Trip
+            </th>*@
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.unit_number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.plate_number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.registration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.vin_number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.make)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.year)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.weight)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.status)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.owner_company)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.driver)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.last_location)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.last_trip)
+                </td>*@
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.unit_number }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.unit_number }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.unit_number })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+    <div>
+        @Html.ActionLink("Reset", "Index")
+    </div>
+</div>

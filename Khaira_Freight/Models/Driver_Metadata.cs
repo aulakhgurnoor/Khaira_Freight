@@ -58,9 +58,9 @@ namespace Khaira_Freight.Models
 
         [Required(ErrorMessage = "Please enter Phone number")]
         [DisplayName("Phone")]
-        [DataType(DataType.PhoneNumber)]
+        //[DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
-        //[StringLength(15, ErrorMessage = "Phone number cannot be more than 15 characters")]
+        [StringLength(15, ErrorMessage = "Phone number cannot be more than 15 characters")]
         public string phone { get; set; }
 
         [Required(ErrorMessage = "Please enter Date of Birth")]

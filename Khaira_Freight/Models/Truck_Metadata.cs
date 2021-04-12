@@ -4,15 +4,14 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Khaira_Freight.Models
 {
     [MetadataType(typeof(Truck_Metadata))]
     public partial class truck
     {
-       // public List<SelectListItem> departmentList { get; set; }
-
-        
+        public List<SelectListItem> statusList { get; set; }
     }
     public class Truck_Metadata
     {

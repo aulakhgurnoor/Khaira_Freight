@@ -1,0 +1,155 @@
+﻿@model Khaira_Freight.Models.planner
+
+@{
+    ViewBag.Title = "AddPlanner";
+}
+    <style>
+        #required:after {
+            content: " *";
+            color: #f00;
+        }
+        #btn_style {
+            color: #494949 !important;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: #ffffff;
+            padding: 20px;
+            border: 4px solid #494949 !important;
+            display: inline-block;
+            transition: all 0.4s ease 0s;
+        }
+
+            #btn_style:hover {
+                color: #ffffff !important;
+                background: #f6b93b;
+                border-color: #f6b93b !important;
+                transition: all 0.4s ease 0s;
+            }
+    </style>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal  breadcrumb" style="        background-color:lavender;
+        padding: 30px;
+        margin: 50px auto;
+        box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+        border-radius: 10px;
+        border: 6px solid #305A72;
+        max-width: 700px;
+        min-width:min-content;">
+    <h2 id="btn_style">Add Planner</h2>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "control-label col-md-2", @id = "required" })
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.DropDownListFor(model => model.status, Model.statusList, "--Select--")
+            @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.trip, htmlAttributes: new { @class = "control-label col-md-2", @id = "required" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.trip, new { htmlAttributes = new { Title = "Enter 4 digit numeric Trip number", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.trip, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.activity, htmlAttributes: new { @class = "control-label col-md-2", @id = "required" })
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.activity, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.DropDownListFor(model => model.activity, Model.activityList, "--Select--")
+            @Html.ValidationMessageFor(model => model.activity, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.driver_id, htmlAttributes: new { @class = "control-label col-md-2", @id = "required" })
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.driver_id, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.DropDownListFor(model => model.driver_id, new SelectList(ViewBag.driverIdList), "--Select--")
+            @Html.ValidationMessageFor(model => model.driver_id, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.driver_name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.driver_name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.driver_name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.city, htmlAttributes: new { @class = "control-label col-md-2" , @id = "required"})
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.province, htmlAttributes: new { @class = "control-label col-md-2" , @id = "required"})
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.province, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.DropDownListFor(model => model.province, Model.provinceList, "--Select--")
+            @Html.ValidationMessageFor(model => model.province, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.truck, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.truck, new { htmlAttributes = new { Title = "Enter 4 digit numeric Truck number", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.truck, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.trailer, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.trailer, new { htmlAttributes = new { Title = "Enter 6 alpha-digit numeric Trailer number", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.trailer, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.start_date, htmlAttributes: new { @class = "control-label col-md-2", @id = "required" })
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.start_date, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.TextBoxFor(model => model.start_date, new { type = "datetime-local" })
+            @Html.ValidationMessageFor(model => model.start_date, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.due_date, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.due_date, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.TextBoxFor(model => model.due_date, new { type = "datetime-local" })
+
+            @Html.ValidationMessageFor(model => model.due_date, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Add" class="btn btn-primary" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button class="btn btn-default">
+                @Html.ActionLink("Back to List", "PlannerList")
+            </button>
+
+        </div>
+    </div>
+</div>
+}

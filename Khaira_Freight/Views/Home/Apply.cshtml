@@ -2,35 +2,110 @@
 @{
     ViewBag.Title = "Apply";
 }
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {
+            background-color: lavender;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-<img src="@Url.Content("~/Content/images/apply_truck_driver.png")" alt="my pic" style="width:100%;height:50%">
+        .container {
+            margin-bottom: 20px;
+        }
 
-<div class="container">
-    <h2>Careers at Khaira Freight | Drivers</h2>
-    <p>
-        As a young, fast growing company we know how important it is for us to invest in our future.
-    </p>
-    <h2>How to apply</h2>
-    <p>
-        Our team treats you with respect, invests in your further training and safety and provides competitive rates
-        and benefit packages. If you are interested please fill out the attached Driver application form
-    </p>
-    <p>
-        <strong>
-            Please forward completed applications in confidence to:
-            <a href="mailto:accounts@khairafreight.com">recruiting@khairafreight.ca </a>
-        </strong>
-        <div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+        #btn_style {
+            color: #494949 !important;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: #ffffff;
+            padding: 10px;
+            border: 4px solid #494949 !important;
+            display: inline-block;
+            transition: all 0.4s ease 0s;
+            margin: 5px;
+        }
+
+            #btn_style:hover {
+                color: #ffffff !important;
+                background: #f6b93b;
+                border-color: #f6b93b !important;
+                transition: all 0.4s ease 0s;
+            }
+    </style>
+</head>
+<body>
+    <img src="@Url.Content("~/Content/images/kf1.jfif")" alt="my pic" style="width:100%;height:100%">
+
+    <div class="container">
+        <h2>Careers at Khaira Freight | Drivers</h2>
+        <p>
+            As a young, fast growing company we know how important it is for us to invest in our future.
+        </p>
+        <h2>How to apply</h2>
+        <p>
+            Our team treats you with respect, invests in your further training and safety and provides competitive rates
+            and benefit packages. If you are interested please fill out the attached Driver application form
+        </p>
+        <p>
+            <strong>
+                Please forward completed applications in confidence to:
+                <a href="mailto:accounts@khairafreight.com">recruiting@khairafreight.ca </a>
+            </strong>
+            @*<div>*@
+            <!--<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                 <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
-            </svg>
-            <a href="../content/pdf/DriverApplicationForm.pdf" target="_blank">Download Driving Application From</a><br />
+            </svg>-->
+            @*<a id="btn_style" href="../content/pdf/DriverApplicationForm.pdf" target="_blank">Download Driving Application From</a>*@
+            <!--<br />
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+            </svg>-->
+            @*<a id="btn_style" href="@Url.Action("DriverApplication", "Home")" target="_blank">Upload Completed Form</a>*@
+            <br />
+            <div style="
+        min-width: fit-content;
+        background-color: lavender;
+        padding: 30px;
+        margin: 50px auto;
+        box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+        border-radius: 10px;
+        border: 6px solid #305A72;
+    ">
+                Please download the form and fill out all the fields, then save file with your name as the file name.<br />
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                    <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+                </svg>
+                <a id="btn_style" href="../content/pdf/DriverApplicationForm.pdf" target="_blank">Download Driving Application From</a><br />
 
-            <a href="@Url.Action("DriverApplication", "Home")" target="_blank">Upload Completed Form</a>
+                <br />
+                Before uploading please make sure the file name is saved by your name.
+                @using (Html.BeginForm("DriverApplication", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <input type="file" name="postedFile" class="btn btn-primary" /><br />
+                    <input type="submit" id="btnUpload" value="Upload" class="btn btn-primary" />
+                }
+            <div class="alert">
+                <h4 class="success">@ViewBag.Success</h4>
+                <h4 class="alert-danger">@ViewBag.ErrorMessage</h4>
 
-        </div>
-</div>
+            </div>
 
+                @*</div>*@
+            </div>
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+                function DownloadFile(fileId) {
+                    $("#hfFileId").val(fileId);
+                    $("#btnDownload")[0].click();
+                };
+    </script>
+</body>
+</html>
 
 
 

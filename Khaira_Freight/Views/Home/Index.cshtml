@@ -1,82 +1,234 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
 
-<style>
-    .bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4, .bgimg-5, .bgimg-6 {
-        position: relative;
-        opacity: 0.65;
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    .bgimg-1 {
-        background-image: url("../../Content/images/truck2.jpg");
-        min-height: 400px;
-    }
-
-    .bgimg-2 {
-        background-image: url("../../Content/images/truck2_khaira_freight.png");
-        min-height: 400px;
-    }
-
-    .bgimg-3 {
-        background-image: url("../../Content/images/apply_truck_driver.png");
-        min-height: 400px;
-    }
-
-    .bgimg-4 {
-        background-image: url("../../Content/images/trolley_khaira_freight.png");
-        min-height: 400px;
-    }
-
-    .bgimg-5 {
-        background-image: url("../../Content/images/trolley2_khaira_freight.png");
-        min-height: 400px;
-    }
-
-    .bgimg-6 {
-        background-image: url("../../Content/images/trolley3_khaira_freight.png");
-        min-height: 400px;
-    }
-
-    .caption {
-        position: absolute;
-        left: 0;
-        top: 50%;
-        width: 100%;
-        text-align: center;
-        color: #000;
-    }
-
-
-        .caption span.border {
-            color: black;
-            padding: 18px;
-            font-size: 25px;
-            letter-spacing: 10px;
-            font-weight: bold;
+        header .item {
+            height: 70vh;
+            position: relative;
+            background-color: black;
         }
 
-    h3 {
-        letter-spacing: 5px;
-        text-transform: uppercase;
-        font: 20px "Lato", sans-serif;
-        color: #111;
-    }
-</style>
+            header .item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            header .item .cover {
+                padding: 75px 0;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background: rgba(0, 0, 0, 0.6);
+                display: flex;
+                align-items: center;
+            }
+
+                header .item .cover .header-content {
+                    position: relative;
+                    padding: 56px;
+                    overflow: hidden;
+                }
+
+                    header .item .cover .header-content .line {
+                        content: "";
+                        display: inline-block;
+                        width: 100%;
+                        height: 100%;
+                        left: 0;
+                        top: 0;
+                        position: absolute;
+                        border: 9px solid #fff;
+                        clip-path: polygon(0 0, 60% 0, 36% 100%, 0 100%);
+                    }
+
+                    header .item .cover .header-content h2 {
+                        font-weight: 300;
+                        font-size: 35px;
+                        color: #fff;
+                    }
+
+                    header .item .cover .header-content h1 {
+                        font-size: 56px;
+                        font-weight: 600;
+                        margin: 5px 0 20px;
+                        word-spacing: 3px;
+                        color: #fff;
+                    }
+
+                    header .item .cover .header-content h4 {
+                        font-size: 24px;
+                        font-weight: 300;
+                        line-height: 36px;
+                        color: #fff;
+                    }
+
+        header .owl-item.active h1 {
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+            animation-name: fadeInDown;
+            animation-delay: 0.3s;
+        }
+
+        header .owl-item.active h2 {
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+            animation-name: fadeInDown;
+            animation-delay: 0.3s;
+        }
+
+        header .owl-item.active h4 {
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+            animation-name: fadeInUp;
+            animation-delay: 0.3s;
+        }
+
+        header .owl-item.active .line {
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+            animation-name: fadeInLeft;
+            animation-delay: 0.3s;
+        }
+
+
+
+        #contactButton {
+            background-color: black;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            width: 150px;
+            height: 50px;
+        }
+
+        .bgimg-2, .bgimg-3, .bgimg-4, .bgimg-5, .bgimg-6 {
+            position: relative;
+            opacity: 0.65;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+
+        .bgimg-2 {
+            background-image: url("../../Content/images/KhairaTruckNew.jpeg");
+            min-height: 400px;
+        }
+
+        .bgimg-3 {
+            background-image: url("../../Content/images/truck2_khaira_freight.png");
+            min-height: 400px;
+        }
+
+        .bgimg-4 {
+            background-image: url("../../Content/images/truck2.jpg");
+            min-height: 400px;
+        }
+
+        .bgimg-5 {
+            background-image: url("../../Content/images/truck_khaira_freight.png");
+            min-height: 400px;
+        }
+
+
+        .caption {
+            position: absolute;
+            left: 0;
+            top: 40%;
+            width: 100%;
+            text-align: center;
+            color: #000;
+        }
+
+
+            .caption span.border {
+                color: black;
+                padding: 18px;
+                font-size: 25px;
+                letter-spacing: 5px;
+                font-weight: bold;
+            }
+
+
+        .container3 {
+            margin-left: 150px;
+            margin-right: 150px;
+        }
+
+
+        h3 {
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font: 20px "Lato", sans-serif;
+            color: #111;
+        }
+
+        .button {
+            background-color: black;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .button1 {
+            width: 300px;
+        }
+    </style>
+
+</head>
 <body>
-    <div class="bgimg-1">
-        <div class="caption">
-            <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">
-                WELCOME TO KHAIRA FREIGHT
-            </span>
+    <header>
+        <div class="owl-carousel owl-theme">
+            <div class="item">
+                <img src="~/Content/images/truck2_khaira_freight.png" alt="images not found">
+                <div class="cover">
+                    <div class="container">
+                        <div class="header-content">
+                            <div class="line"></div>
+                            <h2>Welcome to Khaira Freight</h2>
+                            <h4>
+                                Khaira Freight is a full service nationalwide transportation and
+                                logistics company where delivering your load safe, and on time, is not
+                                our goal but our standard.
+                            </h4>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
-    </div>
-    <div style="color: #777;background-color:white;text-align:center;text-align: justify;">
+
+    </header>
+
+
+    <div style="color: #777;background-color:white;text-align:center;text-align: justify;height:50%">
 
         <div style="position:relative;">
             <div style="color: #10355f;
@@ -97,12 +249,14 @@
 
     <div class="bgimg-2">
         <div class="caption">
-            <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">
-                WE CARE AT KHAIRA FREIGHT!
+            <span class="border" style="background-color:transparent;font-size:50px;color: #f7f7f7;">
+                We Care At Khaira Freight!<br />
+                <button class="button button1" onclick="location.href='@Url.Action("GetQuote", "Home")'">REQUEST A FREE QUOTE</button><br>
             </span>
+
         </div>
     </div>
-    <div style="color: #777;background-color:white;text-align:center;text-align: justify;">
+    <div style="color: #777;background-color:white;text-align:center;text-align: justify;height:50%">
 
         <div style="position:relative;">
             <div style="color: #10355f;
@@ -111,8 +265,8 @@
         text-align: center;
         padding: 50px 80px;
         text-align: center;">
-                <h2 style="font-weight:bolder">We Haul All Types of Freight</h2>
-
+                <h2 style="font-weight:bolder;font-size:28pt">We Haul All Types of Freight</h2>
+                <br />
                 <p>
                     We haul many different types of freight including produce, consumable goods, insulation, steel, aluminum, bricks,
                     stone, metal beams, and metal coils.  Our promise is to ensure your freight arrives in a Safe and Timely manner.
@@ -123,18 +277,52 @@
     </div>
     <div class="bgimg-3">
         <div class="caption">
-            <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;"></span>
+            <span class="border" style="background-color: transparent;font-size: 30px;color: #f7f7f7;text-align: right;">
+                Professional Services<br />
+                <b>with international experience.</b><br />
+                <input type="button" id="contactButton" value="Contact us" onclick="location.href='@Url.Action("Contact", "Home")'" />
+            </span>
+
         </div>
     </div>
-    <br /><br />
-    <div class="container">
+    <div style="position:relative;">
+        <div style="color: #10355f;
+        background-color: white;
+        font-size:20px;
+        text-align: center;
+        padding: 50px 80px;">
+            <h2 style="font-weight:bolder">
+                LTL and Full Load Service<br /><br />
+
+                REEFERS - DRY VANS - FLATBEDS - ROLLTITE STEPDECK.
+
+            </h2>
+            <p>
+                When you entrust your freight to us, you can be sure that we’ll take care of every last detail.
+                Whether you require FLT or LTL service we work with you to ensure your freight gets to you in a Timely fashion.
+                Servicing Ontario, Canada Wide and USA our Team works diligently to keep our Trucks moving.
+            </p>
+        </div>
+    </div>
+    <div class="bgimg-4">
+        <div class="caption">
+            <span class="border" style="background-color:transparent;font-size:30px;color: #f7f7f7;">
+                Our Mission:<br />
+
+                Safety First<br />
+                Reliability And Integrity
+
+            </span>
+        </div>
+    </div>
+    <div class="container3">
         <div class="row">
             <div class="col-md-4 border-0">
                 <div class="thumbnail" style="border-color:white">
                     <img src="~/Content/images/clock.jpg" alt="Lights" width="120">
                     <div>
                         <h2 style="text-align:center">On Time. All the Time.</h2>
-                        <p>
+                        <p style="text-align:center">
                             If we say it'll get there by a certain date, rest assured your load will arrive
                             as expected without any surprise. We use the latest communication technology
                             to reliably provide up-to-the-minute updates as your shipment safely reaches the final
@@ -149,7 +337,7 @@
                     <img src="~/Content/images/safety.png" width="80">
                     <div>
                         <h2 style="text-align:center">Safety of Equipment and Load Securement</h2>
-                        <p>
+                        <p style="text-align:center">
                             We offer a variety of 53 trailers including Dry Vans, Reefers and Flat Beds.
                             <br />
                         </p>
@@ -161,7 +349,7 @@
                     <img src="~/Content/images/glo.png" alt="Fjords" width="80">
                     <div>
                         <h2 style="text-align:center">Our entire Fleet is equipped with</h2>
-                        <p>
+                        <p style="text-align:center">
                             ELD's, Dashcams, and GPS Tracking are utilized allowing our
                             drivers to manage and maintain their equipment. Ensures operating
                             costs are reduced whilst ensuring our clients freight is protected.
@@ -171,54 +359,32 @@
             </div>
         </div>
     </div>
-    <div class="bgimg-4">
-        <div class="caption">
-            <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">SAFETY FIRST</span>
-        </div>
-    </div>
-    <div style="color: #10355f;
-        background-color: white;
-        font-size:20px;
-        text-align: center;
-        padding: 50px 80px;">
-        <h3>RELIABLITY AND INTEGRITY</h3>
-    </div>
     <div class="bgimg-5">
         <div class="caption">
-            <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">HAULING MADE SIMPLER </span>
+            <span class="border" style="background-color:transparent;font-size:30px;color: #f7f7f7;">
+                A Carrier You Can Count On
+            </span>
         </div>
     </div>
-    <div style="color: #10355f;
+    <div style="color: black;background-color:white;text-align:center;text-align: justify;">
+
+        <div style="position:relative;">
+            <div style="color: black;
         background-color: white;
         font-size:20px;
         text-align: center;
-        padding: 50px 80px;">
-        <h3>A CAREER YOU CAN COUNT ON </h3>
-    </div>
-    <div class="bgimg-6">
-        <div class="caption">
-            <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">DRYVAN AND REEFER<br />FLAT BED VISION</span>
+        padding: 50px 80px;
+        text-align: center;">
+                <h2 style="font-weight:bolder">We’re dedicated to customers and focused on quality</h2>
+                <br /><br />
+                <button class="button button1" onclick="location.href='@Url.Action("GetQuote", "Home")'">REQUEST A FREE QUOTE</button><br>
+            </div>
         </div>
     </div>
 
 
-    <div style="position:relative;">
-        <div style="color: #10355f;
-        background-color: white;
-        font-size:20px;
-        text-align: center;
-        padding: 50px 80px;">
-            <h2 style="font-weight:bolder">
-                LTL and Full Load Service<br />
-                REEFERS - DRY VANS - FLATBEDS
-            </h2>
-            <p>
-                When you entrust your freight to us, you can be sure that we’ll take care of every last detail.
-                Whether you require FLT or LTL service we work with you to ensure your freight gets to you in a Timely fashion.
-                Servicing Ontario, Canada Wide and USA our Team works diligently to keep our Trucks moving.
-            </p>
-        </div>
-    </div>
+
+
 
 </body>
-
+</html>

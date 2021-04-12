@@ -1,0 +1,146 @@
+﻿@model Khaira_Freight.Models.dispatch
+
+@{
+    ViewBag.Title = "Delete Dispatcher";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+    <style>
+        #required:after {
+            content: " *";
+            color: #f00;
+        }
+
+
+          #btn_style {
+            color: #494949 !important;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: #ffffff;
+            padding: 20px;
+            border: 4px solid #494949 !important;
+            display: inline-block;
+            transition: all 0.4s ease 0s;
+        }
+
+            #btn_style:hover {
+                color: #ffffff !important;
+                background: #f6b93b;
+                border-color: #f6b93b !important;
+                transition: all 0.4s ease 0s;
+            }
+    </style>
+
+
+    <div class="form-horizontal  breadcrumb" style="        background-color:lavender;
+        padding: 30px;
+        margin: 50px auto;
+        box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+        border-radius: 10px;
+        border: 6px solid #305A72;
+        max-width: 700px;
+              min-width:min-content;">
+        <h2 id="btn_style">Delete Dispatcher</h2>
+
+        <h3>Are you sure you want to delete this?</h3>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.first_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.first_name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.last_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.last_name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.address)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.postal_code)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.postal_code)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.city)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.city)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.province)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.province)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.dob)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.dob)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.nationality)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nationality)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.gender)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.gender)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-primary" /> 
+        
+            </div>
+            <br />
+            <div class="form-actions no-color">
+
+                <button class="btn btn-default">
+                    @Html.ActionLink("Back to List", "IndexDispatch")
+                </button>
+
+            </div>
+        }
+    </div>

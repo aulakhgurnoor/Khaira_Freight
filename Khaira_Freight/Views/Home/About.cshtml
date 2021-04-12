@@ -1,7 +1,126 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "About Us";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-<p>Use this area to provide additional information.</p>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        #back {
+            margin-left: 470px;
+            margin-top: -474px;
+        }
+
+        #box {
+            box-shadow: grey;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        #p1 {
+            margin-left: 40px;
+            margin-right: 800px;
+            padding: 20px;
+            text-align: left;
+            font-size: 15px;
+        }
+
+        #p2 {
+            font-size: 25px;
+            text-align: center;
+        }
+
+        #box {
+            border: 2px solid black;
+            outline: grey solid 5px;
+            margin-left: 700px;
+            margin-right: 150px;
+            margin-top: -250px;
+            padding: 20px;
+            text-align: left;
+            font-size: 18px;
+        }
+
+        body {
+            background-color: lightblue;
+        }
+
+        #team1 {
+            margin-left: 153px;
+        }
+
+        #back {
+            margin-top: -480px;
+        }
+    </style>
+
+
+</head>
+<body>
+
+    <img src="~/Content/images/truck_khaira_freight.png" alt="my pic" style="width:47%;height:120%" />
+
+    <img id="back" src="~/Content/images/bkgrd.png" alt="my pic" style="width: 65%; height: 50%" />
+
+    @*Our Services
+        <p id="p">
+            Our Fleet has two Divisions: The Flatbed division and Dry Van Reefer division.
+            Each division is operated by an experienced team of dispatchers, route planners,
+            customs clearence, e-log trackers and safety manager. This separation allows for the most
+            efficient freight.
+        </p>*@
+    <div id="p1">
+        <p>
+            <h2>We Provide: </h2> <br />
+            <ul>
+                <li>Big Road HOS Electronic Logs</li>
+                <li>Vision Dash Cam</li>
+                <li>Big Road GPS Tracking real time</li>
+                <li>Modern Fleet - Tractor and Trailers</li>
+                <li>Secure Yard</li>
+
+                <li>In-House Certified AZ Mechanics</li>
+                <li>Xpert IT Solutions Fleet Management software</li>
+            </ul>
+        </p>
+
+        <br />
+    </div>
+    <div id="box">
+        <h1>Professional Services</h1>
+        <ul>
+            <li><i style="font-size:24px" class="fa">&#xf14a;</i> 24 hrs Service</li>
+            <li><i style="font-size:24px" class="fa">&#xf14a;</i> On time Delivery</li>
+            <li><i style="font-size:24px" class="fa">&#xf14a;</i> Flexibility</li>
+            <li> <i style="font-size:24px" class="fa">&#xf14a;</i> Safety And Risk Management</li>
+        </ul>
+    </div>
+    <br /><br />
+    <div id="p2">
+        <p>
+            We welcome an opportunity to service your needs and bring you a level of
+            satisfaction that energizes us to deliver freight at the highest of quality levels.
+        </p>
+
+    </div>
+
+    <div class="jumbotron" style="background-color: #003366; color: white">
+        <h1 style="text-align:center">Our Team</h1>
+
+        <p class="lead">
+            Our Team consists of highly qualified and motivated professionals, who are all experts in their fields. Whether a Driver, Dispatcher or
+            Safety & Compliance Officer, we all take our jobs serious. With many years of experience in the transportation industry, they have the
+            expertise to provide comprehensive, first-rate services to our clients.
+        </p>
+    </div>
+    <img id="team1" src="@Url.Content("~/Content/images/team.png")" alt="my pic" style="width:76%;height:80%">
+
+</body>
+
+</html>

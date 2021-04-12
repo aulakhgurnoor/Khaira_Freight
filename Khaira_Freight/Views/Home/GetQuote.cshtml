@@ -1,0 +1,301 @@
+﻿@model Khaira_Freight.Models.quote
+
+@{
+    ViewBag.Title = "GetQuote";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <style>
+        #required:after {
+            content: " *";
+            color: #f00;
+        }
+
+
+        #btn_style {
+            color: #494949 !important;
+            text-decoration: none;
+            background: #ffffff;
+            border: 1px solid #494949 !important;
+            display: inline-block;
+            transition: all 0.4s ease 0s;
+        }
+
+            #btn_style:hover {
+                color: #ffffff !important;
+                background: #f6b93b;
+                border-color: #f6b93b !important;
+                transition: all 0.4s ease 0s;
+            }
+
+
+        body {
+        
+            font-family: Arial, Helvetica, sans-serif;
+                         background-attachment: fixed;
+                             background-size: cover;
+                               background-image: url('../../Content/images/annie-spratt-0ZPSX_mQ3xI-unsplash.jpg');
+                           /*background-color: #b2cecf;*/
+                          
+        }
+
+
+        #heading {
+            color: #494949 !important;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: #ffffff;
+            padding: 20px;
+            border: 4px solid #494949 !important;
+            display: inline-block;
+            transition: all 0.4s ease 0s;
+        }
+
+            #heading:hover {
+                color: #ffffff !important;
+                background: #f6b93b;
+                border-color: #f6b93b !important;
+                transition: all 0.4s ease 0s;
+            }
+    </style>
+</head>
+<body>
+
+
+    <div class="container body-content">
+
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+        <div id="getform">
+
+
+            <div class="form-horizontal  breadcrumb" style="        background-color:lavender;
+        padding: 30px;
+        margin: 50px auto;
+        box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+        border-radius: 10px;
+        border: 6px solid #305A72;
+        /*max-width: 800px;*/
+        min-width:min-content;">
+                <h2 id="heading">Get A Quote</h2>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.full_name, htmlAttributes: new
+                    {
+                        @class = "control-label col-md-2"
+,
+                        @id = "required"
+                    })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.full_name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.full_name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.email, htmlAttributes: new
+                    {
+                        @class = "control-label col-md-2"
+,
+                        @id = "required"
+                    })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.phone, htmlAttributes: new
+                    {
+                        @class = "control-label col-md-2"
+,
+                        @id = "required"
+                    })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.street_address, htmlAttributes: new
+                    {
+                        @class = "control-label col-md-2"
+,
+                        @id = "required"
+                    })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.street_address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.street_address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.city, htmlAttributes: new
+                    {
+                        @class = "control-label col-md-2"
+,
+                        @id = "required"
+                    })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.postal_code, htmlAttributes: new
+                    {
+                        @class = "control-label col-md-2"
+,
+                        @id = "required"
+                    })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.postal_code, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.postal_code, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.province, htmlAttributes: new
+                    {
+                        @class = "control-label col-md-2"
+,
+                        @id = "required"
+                    })
+                    <div class="col-md-10">
+
+                        @Html.DropDownListFor(model => model.province, Model.provinceList, "--Select--")
+                        @Html.ValidationMessageFor(model => model.province, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.pickup_location, htmlAttributes: new
+                    {
+                        @class = "control-label col-md-2"
+,
+                        @id = "required"
+                    })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.pickup_location, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.pickup_location, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.pickup_date, htmlAttributes: new
+                    {
+                        @class = "control-label col-md-2"
+,
+                        @id = "required"
+                    })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.pickup_date, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.pickup_date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.drop_location, htmlAttributes: new
+                    {
+                        @class = "control-label col-md-2"
+,
+                        @id = "required"
+                    })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.drop_location, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.drop_location, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.drop_date, htmlAttributes: new
+                    {
+                        @class = "control-label col-md-2"
+,
+                        @id = "required"
+                    })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.drop_date, new
+                        {
+                            htmlAttributes = new
+                            {
+                                @class = "form-control"
+
+                            }
+                        })
+                        @Html.ValidationMessageFor(model => model.drop_date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.equipment_type, htmlAttributes: new
+                    {
+                        @class = "control-label col-md-2"
+,
+                        @id = "required"
+                    })
+                    <div class="col-md-10">
+
+                        @Html.DropDownListFor(model => model.equipment_type, Model.equipmentList, "--Select--")
+
+                        @Html.ValidationMessageFor(model => model.equipment_type, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.weight, htmlAttributes: new
+                    {
+                        @class = "control-label col-md-2"
+,
+                        @id = "required"
+                    })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.weight, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.weight, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.commodity, htmlAttributes: new
+                    {
+                        @class = "control-label col-md-2"
+,
+                        @id = "required"
+                    })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.commodity, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.commodity, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button id="btn_style">
+                            @Html.ActionLink("Back to Home", "Index")
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+
+    </div>
+</body>       
+ </html>  

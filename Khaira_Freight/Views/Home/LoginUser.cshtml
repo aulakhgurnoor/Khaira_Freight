@@ -1,0 +1,152 @@
+﻿@model Khaira_Freight.Models.UserTable
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <title>Index</title>
+    <style type="text/css">
+
+                body {
+                  
+                    background-image: url('../../Content/images/annie-spratt-0ZPSX_mQ3xI-unsplash.jpg');
+                          /*background-color: #b2cecf;*/
+                    font-family: Arial, Helvetica, sans-serif;
+                     background-attachment: fixed;
+                             background-size: cover;
+                }
+        /*body {
+                    font-family: Arial;
+                    font-size: 10pt;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: 0;
+                    left: 0;
+                    background-image: url('../../Content/images/yellow-truck.jpg');
+                    height:100vh;*/
+                /**/ /*}*/
+                /*.body-content1 {
+                    background-image: url('../../Content/images/kf1.jfif');
+                    padding-left: 300px;
+                    padding-right: 0;
+                    padding-bottom: 50px;
+                    padding-top: 50px;
+                    margin-left: -15px;
+                    margin-right: -15px;
+                    margin-top: -50px;
+                    margin-bottom: -50px;
+                }*/
+                /*.form-wrapper {
+                    max-width: 450px;
+                    width: 100%;
+                    top: 50%;
+                    margin-left:200px;*/
+                /*            transform: translate(-50%, -50%);
+        */ /*margin-top: 50px;
+                    margin-left: 50px;*/
+                /*}*/
+
+                .input {
+                    width: 350px;
+                    background-color: azure;
+                    height: 35px;
+                }
+
+                #password {
+                    width: 350px;
+                    background-color: azure;
+                    height: 35px;
+                }
+
+                .error {
+                    color: red;
+                }
+
+                .loginbtn {
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 14px 20px;
+                    margin: 8px 0;
+                    border: none;
+                    cursor: pointer;
+                    width: 350px;
+                }
+
+                    .loginbtn:hover {
+                        opacity: 0.8;
+                    }
+
+                .cancelbtn {
+                    background-color: #f44336;
+                    color: white;
+                    padding: 14px 20px;
+                    margin: 8px 0;
+                    border: none;
+                    cursor: pointer;
+                    width: 280px;
+                }
+
+                    .cancelbtn:hover {
+                        opacity: 0.8;
+                    }
+    </style>
+</head>
+<body>
+    <div class="form-wrapper">
+
+        <div style="        width: 35%;
+        min-width: fit-content;
+/*        width: fit-content;
+*/        background-color: white;
+        padding: 30px;
+        margin: 50px auto;
+        box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+        border-radius: 10px;
+        border: 6px solid #305A72;
+    ">
+            <form action="LoginUser" method="post">
+                <img id="logo" src="~/Content/images/logo_khaira_freight_dark_blue.png" alt="logo" style="width:235px; height:50px;" />
+                <h3>Sign in</h3>
+                <p>With your Account</p><br /><br />
+                <label>Username</label><br />
+                @Html.TextBoxFor(m => m.Username, "", new { @class = "input", id = "h" }) <br />
+
+                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "error" }) <br />
+
+                <label>Password</label> <br />
+                @Html.PasswordFor(m => m.Password, new { @class = "input", @id = "h" }) <br />
+
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "error" }) <br />
+
+                <label>Remember Me</label>
+
+                @Html.CheckBoxFor(m => m.RememberMe)<br />
+                <input type="hidden" name="ReturnUrl" value="@Request.QueryString["ReturnUrl"]" /><br />
+                <input class="loginbtn" type="submit" value="Login" /><br />
+                <button type="reset" class="cancelbtn">Cancel</button>
+
+            </form>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @if (@ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            $(function () {
+                alert("@ViewBag.Message")
+            });
+        </script>
+    }
+</body>
+</html>
+

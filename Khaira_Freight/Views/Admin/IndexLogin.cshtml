@@ -1,63 +1,137 @@
-﻿@model IEnumerable<Khaira_Freight.Models.employee_login>
+﻿@*@model IEnumerable<Khaira_Freight.Models.UserTable>*@
+@model PagedList.IPagedList<Khaira_Freight.Models.UserTable>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "IndexLogin";
+    ViewBag.Title = "User List";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
+<style>
 
-<h2>IndexLogin</h2>
+    #btn_style {
+        color: #494949 !important;
+        text-transform: uppercase;
+        text-decoration: none;
+        background: #ffffff;
+        padding: 20px;
+        border: 4px solid #494949 !important;
+        display: inline-block;
+        transition: all 0.4s ease 0s;
+    }
 
-<p>
-    @Html.ActionLink("Create New", "AddLogin")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.department)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.emp_id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.first_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.last_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.password)
-        </th>
-        <th></th>
-    </tr>
+        #btn_style:hover {
+            color: #ffffff !important;
+            background: #f6b93b;
+            border-color: #f6b93b !important;
+            transition: all 0.4s ease 0s;
+        }
+</style>
+<div style=" width:fit-content;       background-color:lavender;
+        padding: 30px;
+        margin: 50px auto;
+        box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+        border-radius: 10px;
+        border: 6px solid #305A72
+        ;
+        ">
+    <h2 id="btn_style">User List</h2>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.department)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.emp_id)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.first_name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.last_name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.username)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.password)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "EditLogin", new { id = item.emp_id }) |
-        @Html.ActionLink("Details", "DetailsLogin", new { id = item.emp_id }) |
-        @Html.ActionLink("Delete", "DeleteLogin", new { id = item.emp_id })
-    </td>
-</tr>
-}
+    <p>
+        @Html.ActionLink("Create New", "AddLogin")
+    </p>
+    @using (Html.BeginForm("IndexLogin", "Admin", FormMethod.Get))
+    {
+        <p>
+            Search by First Name/Username/Role : @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input class="btn btn-primary" type="submit" value="Search" />
+        </p>
+    }
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.UserId)*@
+                User ID
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.EmpId)*@
+                Employee ID
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>*@
+            <th>
+                @Html.ActionLink("Username", "IndexLogin", new { sortOrder = ViewBag.UsernameSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Password)
+                Password
+            </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.EmpName)
+                </th>*@
+            <th>
+                @Html.ActionLink("EmpName", "IndexLogin", new { sortOrder = ViewBag.EmpNameSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.CreatedDate)*@
+                Created Date
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.LastLoginDate)*@
+                Last Login Date
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.RoleTable.RoleName)*@
+                Role
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmpId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmpName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastLoginDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleTable.RoleName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditLogin", new { id = item.UserId }) |
+                    @Html.ActionLink("Details", "DetailsLogin", new { id = item.UserId }) |
+                    @Html.ActionLink("Delete", "DeleteLogin", new { id = item.UserId })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("IndexLogin",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+    <div>
+        @Html.ActionLink("Reset", "IndexLogin")
+    </div>
+</div>

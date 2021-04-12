@@ -1,0 +1,160 @@
+﻿@model Khaira_Freight.Models.planner
+
+@{
+    ViewBag.Title = "Delete Planner";
+}
+<style>
+    #required:after {
+        content: " *";
+        color: #f00;
+    }
+
+    #btn_style {
+        color: #494949 !important;
+        text-transform: uppercase;
+        text-decoration: none;
+        background: #ffffff;
+        padding: 20px;
+        border: 4px solid #494949 !important;
+        display: inline-block;
+        transition: all 0.4s ease 0s;
+    }
+
+        #btn_style:hover {
+            color: #ffffff !important;
+            background: #f6b93b;
+            border-color: #f6b93b !important;
+            transition: all 0.4s ease 0s;
+        }
+</style>
+
+
+
+<div class="form-horizontal  breadcrumb" style="        background-color:lavender;
+        padding: 30px;
+        margin: 50px auto;
+        box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+        border-radius: 10px;
+        border: 6px solid #305A72;
+        max-width: 700px;
+        min-width:min-content;">
+    <h2 id="btn_style">Delete Planner</h2>
+    <h3>Are you sure you want to delete this?</h3>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.event_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.event_id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.activity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.activity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.driver_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.driver_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.driver_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.driver_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.city)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.province)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.province)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.truck)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.truck)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trailer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trailer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.start_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.start_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.due_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.due_date)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-primary" /> 
+           
+        </div>
+        <br />
+        <div class="form-actions no-color">
+         
+                <button class="btn btn-default">
+                    @Html.ActionLink("Back to List", "PlannerList")
+                </button>
+
+        </div>
+    }
+</div>

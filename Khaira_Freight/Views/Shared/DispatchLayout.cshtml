@@ -1,0 +1,231 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Dispatcher</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        body {
+            -webkit-text-stroke-width: 0.3px;
+            font-family: "Lato", sans-serif;
+            background-image: url('../../Content/images/jeshoots-com-pUAM5hPaCRI-unsplash.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+
+        .copyright-footer {
+            width: 100%;
+            color: black;
+             background-color:transparent;
+            text-align: center;
+            height: 50px;
+            padding-top: 15px;
+            margin-bottom: 0;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 2;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        #main {
+            transition: margin-left .5s;
+            padding: 25px;
+            padding-bottom: 50px;
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+            .sidenav a:hover {
+                color: #f1f1f1;
+            }
+
+        .sidenav .closebtn {
+            position: absolute;
+            margin-top: -50px;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        .sidenav b {
+            color: white;
+        }
+
+        .flex-wrapper {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        @@media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 25px;
+            }
+
+                .sidenav a {
+                    font-size: 18px;
+                }
+        }
+        #btnstyle {
+            font-size: 30px;
+            cursor: pointer;
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+            padding: 5px;
+            box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+            border-radius: 10px;
+            border: 6px solid #305A72;
+        }
+
+            #btnstyle:hover {
+                color: #ffffff !important;
+                background: #f6b93b;
+                border-color: #f6b93b !important;
+                transition: all 0.4s ease 0s;
+            }
+    </style>
+    @*---------------------------Full Calender-------------------------------*@
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+    <!-- qTip -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" />
+
+    <!-- Full Calendar -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.print.css" media="print" />
+
+    @*---------------------------Full Calender-------------------------------*@
+</head>
+<body>
+
+    @*<nav class="navbar  navbar-inverse navbar-dark navbar-fixed-top bg-dark">*@
+        <nav class="navbar navbar-custom navbar-expand-lg  navbar-fixed-top ">
+            <div class="container-fluid">
+
+                <a class="navbar-brand" href="#"><img src="~/Content/images/logo_khaira_freight_dark_blue.png" alt="logo" style="width:120px; height:30px;" /></a>
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav navbar-right mr-auto">
+
+                        @*<li class="nav-item"><a href="/Dispatch/Home" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="/Dispatch/UserProfile" class="nav-link">Profile</a></li>
+                        <li class="nav-item"><a href="/Dispatch/PlannerList" class="nav-link">Planner</a></li>
+                        <li class="nav-item"><a href="/Dispatch/Calender" class="nav-link">Calender</a></li>
+                        <li class="nav-item"><a href="/Dispatch/Index" class="nav-link">Trucks</a></li>
+                        <li class="nav-item"><a href="/Dispatch/PayStatement" class="nav-link">Pay</a></li>*@
+
+                        @*Logout*@
+                        <li class="nav-item">
+                            <a href="#" onclick="document.forms[0].submit();">Logout</a>
+                            @*Logout*@
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="/Dispatch/Home" class="nav-link"><i class="fa fa-fw fa-home"></i>Home</a>
+            <a href="/Dispatch/UserProfile" class="nav-link"><i class="fa fa-fw fa-user"></i>Profile</a>
+            <a href="/Dispatch/PlannerList" class="nav-link">Planner</a>
+            <a href="/Dispatch/Calender" class="nav-link">Calender</a>
+            <a href="/Dispatch/Index" class="nav-link">Trucks</a>
+            <a href="/Dispatch/PayStatement">PayStubs</a>
+            <a href="#" onclick="document.forms[0].submit();"><i class="fa fa-log-out-alt"></i>Logout</a>
+
+        </div>
+        <div class="flex-wrapper">
+
+            <div id="main">
+                <h3 style="        background: linear-gradient(to right, #e0eafc, #cfdef3);
+        padding: 5px;
+        margin-top: 0;
+        box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+        border-radius: 10px;
+        border: 6px solid #305A72;
+        float: right;">
+                    @*Welcome*@
+                    <b>@HttpContext.Current.User.Identity.Name</b>
+                </h3>
+                <span id="btnstyle" onclick="openNav()">&#9776; </span>
+                @*Logout*@
+
+                <br />
+                <br />
+                @using (Html.BeginForm("Logout", "Home", FormMethod.Post))
+                {
+
+                }
+                @*Logout*@
+                <div class="container body-content">
+
+                    @RenderBody()
+                </div>
+            </div>
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            <script>
+                function openNav() {
+                    document.getElementById("mySidenav").style.width = "250px";
+                    document.getElementById("main").style.marginLeft = "250px";
+                    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+                }
+
+                function closeNav() {
+                    document.getElementById("mySidenav").style.width = "0";
+                    document.getElementById("main").style.marginLeft = "0";
+                    document.body.style.backgroundColor = "white";
+                }
+            </script>
+            @*---------------------------Full Calender-------------------------------*@
+
+            <!-- Include moment-->
+            <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
+            <!-- qTip -->
+            <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
+
+            <!-- Full Calendar -->
+            <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.js"></script>
+            @Scripts.Render("~/bundles/Script-calendar")
+
+            @*---------------------------Full Calender-------------------------------*@
+
+            @RenderSection("scripts", required: false)
+
+
+            <div class="copyright-footer">
+                <div class="container">
+                    <div class="row">
+                        <p class="copyright">Khaira Freight &copy; @DateTime.Now.Year  All rights reserved</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+</body>
+</html>

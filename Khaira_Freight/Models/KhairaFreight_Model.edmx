@@ -30,16 +30,17 @@
           <Property Name="ContentType" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Data" Type="varbinary(max)" Nullable="false" />
         </EntityType>
-        <EntityType Name="employee_login">
+        <EntityType Name="feedback">
           <Key>
-            <PropertyRef Name="emp_id" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="emp_id" Type="int" Nullable="false" />
-          <Property Name="department" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="first_name" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="last_name" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="username" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="password" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="full_name" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="30" />
+          <Property Name="phone" Type="varchar" MaxLength="15" />
+          <Property Name="message_subject" Type="varchar" MaxLength="50" />
+          <Property Name="message_body" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="added_on" Type="datetime" />
         </EntityType>
         <EntityType Name="pay_statement">
           <Key>
@@ -51,6 +52,50 @@
           <Property Name="Data" Type="varbinary(max)" Nullable="false" />
           <Property Name="emp_id" Type="int" Nullable="false" />
           <Property Name="department" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="planner">
+          <Key>
+            <PropertyRef Name="event_id" />
+          </Key>
+          <Property Name="event_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="trip" Type="int" Nullable="false" />
+          <Property Name="activity" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="driver_id" Type="int" />
+          <Property Name="driver_name" Type="varchar" MaxLength="50" />
+          <Property Name="city" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="province" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="truck" Type="int" />
+          <Property Name="trailer" Type="varchar" MaxLength="20" />
+          <Property Name="start_date" Type="datetime" Nullable="false" />
+          <Property Name="due_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="quote">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="full_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="street_address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="postal_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="province" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="pickup_location" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pickup_date" Type="date" Nullable="false" />
+          <Property Name="drop_location" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="drop_date" Type="date" Nullable="false" />
+          <Property Name="equipment_type" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="weight" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="commodity" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoleTable">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="table_driver">
           <Key>
@@ -92,6 +137,38 @@
           <Property Name="last_location" Type="varchar" MaxLength="50" />
           <Property Name="last_trip" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="UserActivate">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ActivationCode" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpId" Type="int" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="EmpName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime" />
+          <Property Name="RoleId" Type="int" />
+        </EntityType>
+        <Association Name="FK_UserTable_RoleTable">
+          <End Role="RoleTable" Type="Self.RoleTable" Multiplicity="0..1" />
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleTable">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="add_driver" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="first_name" Type="varchar" Mode="In" />
           <Parameter Name="last_name" Type="varchar" Mode="In" />
@@ -112,33 +189,41 @@
           <Parameter Name="rate_team" Type="decimal" Mode="In" />
           <Parameter Name="driver_id" Type="int" Mode="InOut" />
         </Function>
+        <Function Name="Insert_UserTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmpId" Type="int" Mode="In" />
+          <Parameter Name="Username" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="EmpName" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="select_driver" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="driver_id" Type="int" Mode="In" />
         </Function>
         <Function Name="selectAll_driverId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Validate_UserTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Username" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="KhairaFreightModelStoreContainer">
           <EntitySet Name="dispatch" EntityType="Self.dispatch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="driver_application" EntityType="Self.driver_application" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="employee_login" EntityType="Self.employee_login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="feedback" EntityType="Self.feedback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="pay_statement" EntityType="Self.pay_statement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="planner" EntityType="Self.planner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="quote" EntityType="Self.quote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleTable" EntityType="Self.RoleTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="table_driver" EntityType="Self.table_driver" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="truck" EntityType="Self.truck" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserActivate" EntityType="Self.UserActivate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_UserTable_RoleTable" Association="Self.FK_UserTable_RoleTable">
+            <End Role="RoleTable" EntitySet="RoleTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="KhairaFreightModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="employee_login">
-          <Key>
-            <PropertyRef Name="emp_id" />
-          </Key>
-          <Property Name="emp_id" Type="Int32" Nullable="false" />
-          <Property Name="department" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="first_name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="last_name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="username" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
         <EntityType Name="table_driver">
           <Key>
             <PropertyRef Name="driver_id" />
@@ -180,7 +265,6 @@
           <Property Name="last_trip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="KhairaFreightEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="employee_login" EntityType="Self.employee_login" />
           <EntitySet Name="table_driver" EntityType="Self.table_driver" />
           <EntitySet Name="trucks" EntityType="Self.truck" />
           <FunctionImport Name="add_driver">
@@ -210,6 +294,30 @@
           <EntitySet Name="dispatches" EntityType="KhairaFreightModel.dispatch" />
           <EntitySet Name="driver_application" EntityType="KhairaFreightModel.driver_application" />
           <EntitySet Name="pay_statement" EntityType="KhairaFreightModel.pay_statement" />
+          <EntitySet Name="planners" EntityType="KhairaFreightModel.planner" />
+          <EntitySet Name="RoleTables" EntityType="KhairaFreightModel.RoleTable" />
+          <EntitySet Name="UserActivates" EntityType="KhairaFreightModel.UserActivate" />
+          <EntitySet Name="UserTables" EntityType="KhairaFreightModel.UserTable" />
+          <AssociationSet Name="FK_UserTable_RoleTable" Association="KhairaFreightModel.FK_UserTable_RoleTable">
+            <End Role="RoleTable" EntitySet="RoleTables" />
+            <End Role="UserTable" EntitySet="UserTables" />
+          </AssociationSet>
+          <FunctionImport Name="Insert_UserTable" ReturnType="Collection(Int32)">
+            <Parameter Name="EmpId" Mode="In" Type="Int32" />
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="EmpName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Validate_UserTable" ReturnType="Collection(KhairaFreightModel.Validate_UserTable_Result)">
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ValidateUser" ReturnType="Collection(KhairaFreightModel.Validate_UserTable_Result)">
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="feedbacks" EntityType="KhairaFreightModel.feedback" />
+          <EntitySet Name="quotes" EntityType="KhairaFreightModel.quote" />
         </EntityContainer>
         <ComplexType Name="select_driver_Result">
           <Property Type="Int32" Name="driver_id" Nullable="false" />
@@ -252,24 +360,106 @@
           <Property Name="emp_id" Type="Int32" Nullable="false" />
           <Property Name="department" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="planner">
+          <Key>
+            <PropertyRef Name="event_id" />
+          </Key>
+          <Property Name="event_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="trip" Type="Int32" Nullable="false" />
+          <Property Name="activity" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="driver_id" Type="Int32" />
+          <Property Name="driver_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="province" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="truck" Type="Int32" />
+          <Property Name="trailer" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="due_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="RoleTable">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserTables" Relationship="KhairaFreightModel.FK_UserTable_RoleTable" FromRole="RoleTable" ToRole="UserTable" />
+        </EntityType>
+        <EntityType Name="UserActivate">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ActivationCode" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpId" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EmpName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
+          <Property Name="RoleId" Type="Int32" />
+          <NavigationProperty Name="RoleTable" Relationship="KhairaFreightModel.FK_UserTable_RoleTable" FromRole="UserTable" ToRole="RoleTable" />
+        </EntityType>
+        <Association Name="FK_UserTable_RoleTable">
+          <End Type="KhairaFreightModel.RoleTable" Role="RoleTable" Multiplicity="0..1" />
+          <End Type="KhairaFreightModel.UserTable" Role="UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleTable">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="Validate_UserTable_Result">
+          <Property Type="Int32" Name="UserId" Nullable="true" />
+          <Property Type="String" Name="Roles" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <EntityType Name="feedback">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="full_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="message_subject" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="message_body" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="added_on" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="quote">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="full_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="street_address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="postal_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="province" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="pickup_location" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pickup_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="drop_location" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="drop_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="equipment_type" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="weight" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="commodity" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="KhairaFreightModelStoreContainer" CdmEntityContainer="KhairaFreightEntities">
-          <EntitySetMapping Name="employee_login">
-            <EntityTypeMapping TypeName="KhairaFreightModel.employee_login">
-              <MappingFragment StoreEntitySet="employee_login">
-                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
-                <ScalarProperty Name="department" ColumnName="department" />
-                <ScalarProperty Name="first_name" ColumnName="first_name" />
-                <ScalarProperty Name="last_name" ColumnName="last_name" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="password" ColumnName="password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="table_driver">
             <EntityTypeMapping TypeName="KhairaFreightModel.table_driver">
               <MappingFragment StoreEntitySet="table_driver">
@@ -359,6 +549,105 @@
                 <ScalarProperty Name="ContentType" ColumnName="ContentType" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="planners">
+            <EntityTypeMapping TypeName="KhairaFreightModel.planner">
+              <MappingFragment StoreEntitySet="planner">
+                <ScalarProperty Name="due_date" ColumnName="due_date" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="trailer" ColumnName="trailer" />
+                <ScalarProperty Name="truck" ColumnName="truck" />
+                <ScalarProperty Name="province" ColumnName="province" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="driver_name" ColumnName="driver_name" />
+                <ScalarProperty Name="driver_id" ColumnName="driver_id" />
+                <ScalarProperty Name="activity" ColumnName="activity" />
+                <ScalarProperty Name="trip" ColumnName="trip" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="event_id" ColumnName="event_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleTables">
+            <EntityTypeMapping TypeName="KhairaFreightModel.RoleTable">
+              <MappingFragment StoreEntitySet="RoleTable">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserActivates">
+            <EntityTypeMapping TypeName="KhairaFreightModel.UserActivate">
+              <MappingFragment StoreEntitySet="UserActivate">
+                <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTables">
+            <EntityTypeMapping TypeName="KhairaFreightModel.UserTable">
+              <MappingFragment StoreEntitySet="UserTable">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Insert_UserTable" FunctionName="KhairaFreightModel.Store.Insert_UserTable" />
+          <FunctionImportMapping FunctionImportName="Validate_UserTable" FunctionName="KhairaFreightModel.Store.Validate_UserTable">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KhairaFreightModel.Validate_UserTable_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Roles" ColumnName="Roles" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ValidateUser" FunctionName="KhairaFreightModel.Store.Validate_UserTable">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KhairaFreightModel.Validate_UserTable_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Roles" ColumnName="Roles" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="feedbacks">
+            <EntityTypeMapping TypeName="KhairaFreightModel.feedback">
+              <MappingFragment StoreEntitySet="feedback">
+                <ScalarProperty Name="added_on" ColumnName="added_on" />
+                <ScalarProperty Name="message_body" ColumnName="message_body" />
+                <ScalarProperty Name="message_subject" ColumnName="message_subject" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="full_name" ColumnName="full_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="quotes">
+            <EntityTypeMapping TypeName="KhairaFreightModel.quote">
+              <MappingFragment StoreEntitySet="quote">
+                <ScalarProperty Name="commodity" ColumnName="commodity" />
+                <ScalarProperty Name="weight" ColumnName="weight" />
+                <ScalarProperty Name="equipment_type" ColumnName="equipment_type" />
+                <ScalarProperty Name="drop_date" ColumnName="drop_date" />
+                <ScalarProperty Name="drop_location" ColumnName="drop_location" />
+                <ScalarProperty Name="pickup_date" ColumnName="pickup_date" />
+                <ScalarProperty Name="pickup_location" ColumnName="pickup_location" />
+                <ScalarProperty Name="province" ColumnName="province" />
+                <ScalarProperty Name="postal_code" ColumnName="postal_code" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="street_address" ColumnName="street_address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="full_name" ColumnName="full_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

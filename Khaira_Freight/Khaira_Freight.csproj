@@ -52,6 +52,12 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -130,10 +136,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DispatchController.cs" />
+    <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Application_Metadata.cs" />
     <Compile Include="Models\dispatch.cs">
       <DependentUpon>KhairaFreight_Model.tt</DependentUpon>
     </Compile>
@@ -142,9 +150,10 @@
       <DependentUpon>KhairaFreight_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Driver_Metadata.cs" />
-    <Compile Include="Models\employee_login.cs">
+    <Compile Include="Models\feedback.cs">
       <DependentUpon>KhairaFreight_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Feedback_Metadata.cs" />
     <Compile Include="Models\KhairaFreight_Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -160,8 +169,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>KhairaFreight_Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Login_Metadata.cs" />
+    <Compile Include="Models\Pay_Metadata.cs" />
     <Compile Include="Models\pay_statement.cs">
+      <DependentUpon>KhairaFreight_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\planner.cs">
+      <DependentUpon>KhairaFreight_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Planner_Metadata.cs" />
+    <Compile Include="Models\quote.cs">
+      <DependentUpon>KhairaFreight_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Quote_Metadata.cs" />
+    <Compile Include="Models\RoleTable.cs">
       <DependentUpon>KhairaFreight_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\select_driver_Result.cs">
@@ -174,6 +194,16 @@
       <DependentUpon>KhairaFreight_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Truck_Metadata.cs" />
+    <Compile Include="Models\UserActivate.cs">
+      <DependentUpon>KhairaFreight_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserTable.cs">
+      <DependentUpon>KhairaFreight_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User_Metadata.cs" />
+    <Compile Include="Models\Validate_UserTable_Result.cs">
+      <DependentUpon>KhairaFreight_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -181,22 +211,56 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fullcalendar.css" />
+    <Content Include="Content\fullcalendar.min.css" />
+    <Content Include="Content\fullcalendar.print.css" />
+    <Content Include="Content\fullcalendar.print.min.css" />
     <Content Include="Content\images\1586314722670.jpg" />
+    <Content Include="Content\images\andrew-ridley-jR4Zf-riEjI-unsplash.jpg" />
+    <Content Include="Content\images\annie-spratt-0ZPSX_mQ3xI-unsplash.jpg" />
     <Content Include="Content\images\apply_truck_driver.png" />
+    <Content Include="Content\images\back1.jpg" />
+    <Content Include="Content\images\bkgrd.png" />
     <Content Include="Content\images\clock.jpg" />
+    <Content Include="Content\images\e1.png" />
+    <Content Include="Content\images\emailLogo.jpg" />
+    <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\glo.jpg" />
     <Content Include="Content\images\glo.png" />
+    <Content Include="Content\images\jahongir-ismoilov-RcjvFd1k18o-unsplash %281%29.jpg" />
+    <Content Include="Content\images\jahongir-ismoilov-RcjvFd1k18o-unsplash.jpg" />
+    <Content Include="Content\images\jeshoots-com-pUAM5hPaCRI-unsplash.jpg" />
+    <Content Include="Content\images\joe-woods-4Zaq5xY5M_c-unsplash.jpg" />
+    <Content Include="Content\images\jon-tyson-HxLrVD55l34-unsplash.jpg" />
+    <Content Include="Content\images\kf1.jfif" />
+    <Content Include="Content\images\KhairaTruckNew.jpeg" />
+    <Content Include="Content\images\laura-davidson-QBAH4IldaZY-unsplash.jpg" />
+    <Content Include="Content\images\loc.png" />
+    <Content Include="Content\images\login.jpg" />
     <Content Include="Content\images\logo_khaira_freight_dark_blue.png" />
+    <Content Include="Content\images\markus-winkler-7iSEHWsxPLw-unsplash.jpg" />
+    <Content Include="Content\images\p1.png" />
+    <Content Include="Content\images\pexels-markus-spiske-226460.jpg" />
+    <Content Include="Content\images\pexels-pixabay-531880.jpg" />
+    <Content Include="Content\images\pexels-skitterphoto-935474.jpg" />
+    <Content Include="Content\images\phone.jpg" />
+    <Content Include="Content\images\profile.jpg.jpg" />
+    <Content Include="Content\images\s-o-c-i-a-l-c-u-t-gREi-9tI5Mg-unsplash.jpg" />
     <Content Include="Content\images\safety.png" />
     <Content Include="Content\images\safety1.png" />
+    <Content Include="Content\images\samantha-gades-BlIhVfXbi9s-unsplash.jpg" />
+    <Content Include="Content\images\scott-webb-VL-OvBppmzI-unsplash.jpg" />
     <Content Include="Content\images\team.png" />
     <Content Include="Content\images\trolley2_khaira_freight.png" />
     <Content Include="Content\images\trolley3_khaira_freight.png" />
     <Content Include="Content\images\trolley_khaira_freight.png" />
+    <Content Include="Content\images\truck-dispatch.jpg" />
     <Content Include="Content\images\truck.jpg" />
     <Content Include="Content\images\truck2.jpg" />
     <Content Include="Content\images\truck2_khaira_freight.png" />
     <Content Include="Content\images\truck_khaira_freight.png" />
+    <Content Include="Content\images\tyler-franta-iusJ25iYu1c-unsplash.jpg" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -264,6 +328,86 @@
     <Content Include="Content\images\dakf.pdf" />
     <Content Include="Content\pdf\DriverApplicationForm.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\fullcalendar.js" />
+    <Content Include="Scripts\fullcalendar.min.js" />
+    <Content Include="Scripts\fullcalendar\fullcalendar.js" />
+    <Content Include="Scripts\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Scripts\fullcalendar\gcal.js" />
+    <Content Include="Scripts\fullcalendar\gcal.min.js" />
+    <Content Include="Scripts\fullcalendar\locale-all.js" />
+    <Content Include="Scripts\fullcalendar\locale\af.js" />
+    <Content Include="Scripts\fullcalendar\locale\ar-dz.js" />
+    <Content Include="Scripts\fullcalendar\locale\ar-kw.js" />
+    <Content Include="Scripts\fullcalendar\locale\ar-ly.js" />
+    <Content Include="Scripts\fullcalendar\locale\ar-ma.js" />
+    <Content Include="Scripts\fullcalendar\locale\ar-sa.js" />
+    <Content Include="Scripts\fullcalendar\locale\ar-tn.js" />
+    <Content Include="Scripts\fullcalendar\locale\ar.js" />
+    <Content Include="Scripts\fullcalendar\locale\bg.js" />
+    <Content Include="Scripts\fullcalendar\locale\bs.js" />
+    <Content Include="Scripts\fullcalendar\locale\ca.js" />
+    <Content Include="Scripts\fullcalendar\locale\cs.js" />
+    <Content Include="Scripts\fullcalendar\locale\da.js" />
+    <Content Include="Scripts\fullcalendar\locale\de-at.js" />
+    <Content Include="Scripts\fullcalendar\locale\de-ch.js" />
+    <Content Include="Scripts\fullcalendar\locale\de.js" />
+    <Content Include="Scripts\fullcalendar\locale\el.js" />
+    <Content Include="Scripts\fullcalendar\locale\en-au.js" />
+    <Content Include="Scripts\fullcalendar\locale\en-ca.js" />
+    <Content Include="Scripts\fullcalendar\locale\en-gb.js" />
+    <Content Include="Scripts\fullcalendar\locale\en-ie.js" />
+    <Content Include="Scripts\fullcalendar\locale\en-nz.js" />
+    <Content Include="Scripts\fullcalendar\locale\es-do.js" />
+    <Content Include="Scripts\fullcalendar\locale\es-us.js" />
+    <Content Include="Scripts\fullcalendar\locale\es.js" />
+    <Content Include="Scripts\fullcalendar\locale\et.js" />
+    <Content Include="Scripts\fullcalendar\locale\eu.js" />
+    <Content Include="Scripts\fullcalendar\locale\fa.js" />
+    <Content Include="Scripts\fullcalendar\locale\fi.js" />
+    <Content Include="Scripts\fullcalendar\locale\fr-ca.js" />
+    <Content Include="Scripts\fullcalendar\locale\fr-ch.js" />
+    <Content Include="Scripts\fullcalendar\locale\fr.js" />
+    <Content Include="Scripts\fullcalendar\locale\gl.js" />
+    <Content Include="Scripts\fullcalendar\locale\he.js" />
+    <Content Include="Scripts\fullcalendar\locale\hi.js" />
+    <Content Include="Scripts\fullcalendar\locale\hr.js" />
+    <Content Include="Scripts\fullcalendar\locale\hu.js" />
+    <Content Include="Scripts\fullcalendar\locale\id.js" />
+    <Content Include="Scripts\fullcalendar\locale\is.js" />
+    <Content Include="Scripts\fullcalendar\locale\it.js" />
+    <Content Include="Scripts\fullcalendar\locale\ja.js" />
+    <Content Include="Scripts\fullcalendar\locale\ka.js" />
+    <Content Include="Scripts\fullcalendar\locale\kk.js" />
+    <Content Include="Scripts\fullcalendar\locale\ko.js" />
+    <Content Include="Scripts\fullcalendar\locale\lb.js" />
+    <Content Include="Scripts\fullcalendar\locale\lt.js" />
+    <Content Include="Scripts\fullcalendar\locale\lv.js" />
+    <Content Include="Scripts\fullcalendar\locale\mk.js" />
+    <Content Include="Scripts\fullcalendar\locale\ms-my.js" />
+    <Content Include="Scripts\fullcalendar\locale\ms.js" />
+    <Content Include="Scripts\fullcalendar\locale\nb.js" />
+    <Content Include="Scripts\fullcalendar\locale\nl-be.js" />
+    <Content Include="Scripts\fullcalendar\locale\nl.js" />
+    <Content Include="Scripts\fullcalendar\locale\nn.js" />
+    <Content Include="Scripts\fullcalendar\locale\pl.js" />
+    <Content Include="Scripts\fullcalendar\locale\pt-br.js" />
+    <Content Include="Scripts\fullcalendar\locale\pt.js" />
+    <Content Include="Scripts\fullcalendar\locale\ro.js" />
+    <Content Include="Scripts\fullcalendar\locale\ru.js" />
+    <Content Include="Scripts\fullcalendar\locale\sk.js" />
+    <Content Include="Scripts\fullcalendar\locale\sl.js" />
+    <Content Include="Scripts\fullcalendar\locale\sq.js" />
+    <Content Include="Scripts\fullcalendar\locale\sr-cyrl.js" />
+    <Content Include="Scripts\fullcalendar\locale\sr.js" />
+    <Content Include="Scripts\fullcalendar\locale\sv.js" />
+    <Content Include="Scripts\fullcalendar\locale\th.js" />
+    <Content Include="Scripts\fullcalendar\locale\tr.js" />
+    <Content Include="Scripts\fullcalendar\locale\uk.js" />
+    <Content Include="Scripts\fullcalendar\locale\vi.js" />
+    <Content Include="Scripts\fullcalendar\locale\zh-cn.js" />
+    <Content Include="Scripts\fullcalendar\locale\zh-tw.js" />
+    <Content Include="Scripts\gcal.js" />
+    <Content Include="Scripts\gcal.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -276,7 +420,100 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\lib\cupertino\images\ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
+    <Content Include="Scripts\lib\cupertino\images\ui-bg_glass_100_e4f1fb_1x400.png" />
+    <Content Include="Scripts\lib\cupertino\images\ui-bg_glass_50_3baae3_1x400.png" />
+    <Content Include="Scripts\lib\cupertino\images\ui-bg_glass_80_d7ebf9_1x400.png" />
+    <Content Include="Scripts\lib\cupertino\images\ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
+    <Content Include="Scripts\lib\cupertino\images\ui-bg_highlight-hard_70_000000_1x100.png" />
+    <Content Include="Scripts\lib\cupertino\images\ui-bg_highlight-soft_100_deedf7_1x100.png" />
+    <Content Include="Scripts\lib\cupertino\images\ui-bg_highlight-soft_25_ffef8f_1x100.png" />
+    <Content Include="Scripts\lib\cupertino\images\ui-icons_2694e8_256x240.png" />
+    <Content Include="Scripts\lib\cupertino\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Scripts\lib\cupertino\images\ui-icons_3d80b3_256x240.png" />
+    <Content Include="Scripts\lib\cupertino\images\ui-icons_72a7cf_256x240.png" />
+    <Content Include="Scripts\lib\cupertino\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\lib\cupertino\jquery-ui.min.css" />
+    <Content Include="Scripts\lib\jquery-ui.min.js" />
+    <Content Include="Scripts\lib\jquery.min.js" />
+    <Content Include="Scripts\lib\moment.min.js" />
+    <Content Include="Scripts\locale-all.js" />
+    <Content Include="Scripts\locale\af.js" />
+    <Content Include="Scripts\locale\ar-dz.js" />
+    <Content Include="Scripts\locale\ar-kw.js" />
+    <Content Include="Scripts\locale\ar-ly.js" />
+    <Content Include="Scripts\locale\ar-ma.js" />
+    <Content Include="Scripts\locale\ar-sa.js" />
+    <Content Include="Scripts\locale\ar-tn.js" />
+    <Content Include="Scripts\locale\ar.js" />
+    <Content Include="Scripts\locale\bg.js" />
+    <Content Include="Scripts\locale\bs.js" />
+    <Content Include="Scripts\locale\ca.js" />
+    <Content Include="Scripts\locale\cs.js" />
+    <Content Include="Scripts\locale\da.js" />
+    <Content Include="Scripts\locale\de-at.js" />
+    <Content Include="Scripts\locale\de-ch.js" />
+    <Content Include="Scripts\locale\de.js" />
+    <Content Include="Scripts\locale\el.js" />
+    <Content Include="Scripts\locale\en-au.js" />
+    <Content Include="Scripts\locale\en-ca.js" />
+    <Content Include="Scripts\locale\en-gb.js" />
+    <Content Include="Scripts\locale\en-ie.js" />
+    <Content Include="Scripts\locale\en-nz.js" />
+    <Content Include="Scripts\locale\es-do.js" />
+    <Content Include="Scripts\locale\es-us.js" />
+    <Content Include="Scripts\locale\es.js" />
+    <Content Include="Scripts\locale\et.js" />
+    <Content Include="Scripts\locale\eu.js" />
+    <Content Include="Scripts\locale\fa.js" />
+    <Content Include="Scripts\locale\fi.js" />
+    <Content Include="Scripts\locale\fr-ca.js" />
+    <Content Include="Scripts\locale\fr-ch.js" />
+    <Content Include="Scripts\locale\fr.js" />
+    <Content Include="Scripts\locale\gl.js" />
+    <Content Include="Scripts\locale\he.js" />
+    <Content Include="Scripts\locale\hi.js" />
+    <Content Include="Scripts\locale\hr.js" />
+    <Content Include="Scripts\locale\hu.js" />
+    <Content Include="Scripts\locale\id.js" />
+    <Content Include="Scripts\locale\is.js" />
+    <Content Include="Scripts\locale\it.js" />
+    <Content Include="Scripts\locale\ja.js" />
+    <Content Include="Scripts\locale\ka.js" />
+    <Content Include="Scripts\locale\kk.js" />
+    <Content Include="Scripts\locale\ko.js" />
+    <Content Include="Scripts\locale\lb.js" />
+    <Content Include="Scripts\locale\lt.js" />
+    <Content Include="Scripts\locale\lv.js" />
+    <Content Include="Scripts\locale\mk.js" />
+    <Content Include="Scripts\locale\ms-my.js" />
+    <Content Include="Scripts\locale\ms.js" />
+    <Content Include="Scripts\locale\nb.js" />
+    <Content Include="Scripts\locale\nl-be.js" />
+    <Content Include="Scripts\locale\nl.js" />
+    <Content Include="Scripts\locale\nn.js" />
+    <Content Include="Scripts\locale\pl.js" />
+    <Content Include="Scripts\locale\pt-br.js" />
+    <Content Include="Scripts\locale\pt.js" />
+    <Content Include="Scripts\locale\ro.js" />
+    <Content Include="Scripts\locale\ru.js" />
+    <Content Include="Scripts\locale\sk.js" />
+    <Content Include="Scripts\locale\sl.js" />
+    <Content Include="Scripts\locale\sq.js" />
+    <Content Include="Scripts\locale\sr-cyrl.js" />
+    <Content Include="Scripts\locale\sr.js" />
+    <Content Include="Scripts\locale\sv.js" />
+    <Content Include="Scripts\locale\th.js" />
+    <Content Include="Scripts\locale\tr.js" />
+    <Content Include="Scripts\locale\uk.js" />
+    <Content Include="Scripts\locale\vi.js" />
+    <Content Include="Scripts\locale\zh-cn.js" />
+    <Content Include="Scripts\locale\zh-tw.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -289,18 +526,12 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Admin\Create.cshtml" />
     <Content Include="Views\Admin\Delete.cshtml" />
     <Content Include="Views\Admin\Details.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\IndexLogin.cshtml" />
-    <Content Include="Views\Admin\AddLogin.cshtml" />
-    <Content Include="Views\Admin\EditLogin.cshtml" />
-    <Content Include="Views\Admin\DeleteLogin.cshtml" />
-    <Content Include="Views\Admin\DetailsLogin.cshtml" />
     <Content Include="Views\Dispatch\Create.cshtml" />
     <Content Include="Views\Dispatch\Delete.cshtml" />
     <Content Include="Views\Dispatch\Details.cshtml" />
@@ -317,6 +548,49 @@
     <Content Include="Views\Shared\AdminLayout.cshtml" />
     <Content Include="Views\Admin\ManagePay.cshtml" />
     <Content Include="Views\Admin\DriverApplication.cshtml" />
+    <Content Include="Views\Dispatch\PlannerList.cshtml" />
+    <Content Include="Views\Dispatch\AddPlanner.cshtml" />
+    <Content Include="Views\Dispatch\EditPlanner.cshtml" />
+    <Content Include="Views\Dispatch\DeletePlanner.cshtml" />
+    <Content Include="Views\Dispatch\PlannerDetails.cshtml" />
+    <Content Include="Views\Shared\DispatchLayout.cshtml" />
+    <Content Include="Views\Dispatch\_CalendarPartial.cshtml" />
+    <Content Include="Views\Dispatch\Calender.cshtml" />
+    <Content Include="Views\Shared\DriverLayout.cshtml" />
+    <Content Include="Views\Home\Profile.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\LoginTemp.cshtml" />
+    <Content Include="Views\Driver\Home.cshtml" />
+    <Content Include="Views\Admin\IndexLogin.cshtml" />
+    <Content Include="Views\Admin\AddLogin.cshtml" />
+    <Content Include="Views\Admin\EditLogin.cshtml" />
+    <Content Include="Views\Admin\DeleteLogin.cshtml" />
+    <Content Include="Views\Admin\DetailsLogin.cshtml" />
+    <Content Include="Views\Driver\UserProfile.cshtml" />
+    <Content Include="Views\Driver\Calender.cshtml" />
+    <Content Include="Views\Driver\_CalendarPartial.cshtml" />
+    <Content Include="Views\Admin\Home.cshtml" />
+    <Content Include="Views\Dispatch\Home.cshtml" />
+    <Content Include="Views\Driver\LoginInfo.cshtml" />
+    <Content Include="Views\Dispatch\LoginInfo.cshtml" />
+    <Content Include="Views\Dispatch\PayStatement.cshtml" />
+    <Content Include="Views\Dispatch\UserProfile.cshtml" />
+    <Content Include="Views\Driver\PayStatement.cshtml" />
+    <Content Include="Views\Admin\Dashboard.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Admin\ViewFeedback.cshtml" />
+    <Content Include="Views\Admin\FeedbackDetails.cshtml" />
+    <Content Include="Views\Admin\DeleteQuote.cshtml" />
+    <Content Include="Views\Admin\DisplayQuote.cshtml" />
+    <Content Include="Views\Admin\QuoteDetails.cshtml" />
+    <Content Include="Views\Home\GetQuote.cshtml" />
+    <Content Include="Views\Dispatch\DeleteDispatch.cshtml" />
+    <Content Include="Views\Admin\DeleteDispatch.cshtml" />
+    <Content Include="Views\Home\LoginUser.cshtml" />
+    <Content Include="Views\Admin\DeleteFile.cshtml" />
+    <Content Include="Views\Admin\DeleteDriverApplication.cshtml" />
+    <Content Include="Views\Driver\EditProfile.cshtml" />
+    <Content Include="Views\Dispatch\EditProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

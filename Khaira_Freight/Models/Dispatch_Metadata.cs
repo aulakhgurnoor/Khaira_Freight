@@ -32,7 +32,7 @@ namespace Khaira_Freight.Models
         public string last_name { get; set; }
 
         [Required(ErrorMessage = "Please enter Street Address")]
-        [DisplayName("Street Address")]
+        [DisplayName("Address")]
         [StringLength(50, ErrorMessage = "Street address cannot be more than 50 characters")]
         public string address { get; set; }
 
@@ -52,9 +52,10 @@ namespace Khaira_Freight.Models
         public string province { get; set; }
 
         [Required(ErrorMessage = "Please enter Phone number")]
-        [DataType(DataType.PhoneNumber)]
+        [DisplayName("Phone")]
+        //[DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
-        //[StringLength(15, ErrorMessage = "Phone number cannot be more than 15 characters")]
+        [StringLength(15, ErrorMessage = "Phone number cannot be more than 15 characters")]
         public string phone { get; set; }
 
         [Required(ErrorMessage = "Please enter Date of Birth")]

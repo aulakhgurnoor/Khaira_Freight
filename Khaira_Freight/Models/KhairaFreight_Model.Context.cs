@@ -27,12 +27,17 @@ namespace Khaira_Freight.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<employee_login> employee_login { get; set; }
         public virtual DbSet<table_driver> table_driver { get; set; }
         public virtual DbSet<truck> trucks { get; set; }
         public virtual DbSet<dispatch> dispatches { get; set; }
         public virtual DbSet<driver_application> driver_application { get; set; }
         public virtual DbSet<pay_statement> pay_statement { get; set; }
+        public virtual DbSet<planner> planners { get; set; }
+        public virtual DbSet<RoleTable> RoleTables { get; set; }
+        public virtual DbSet<UserActivate> UserActivates { get; set; }
+        public virtual DbSet<UserTable> UserTables { get; set; }
+        public virtual DbSet<feedback> feedbacks { get; set; }
+        public virtual DbSet<quote> quotes { get; set; }
     
         public virtual int add_driver(string first_name, string last_name, string address, string postal_code, string city, string province, string corporation, string phone, Nullable<System.DateTime> dob, string nationality, string gender, string pp_number, string license_number, Nullable<System.DateTime> license_expiry, Nullable<System.DateTime> medical_date, Nullable<decimal> rate, Nullable<decimal> rate_team, ObjectParameter driver_id)
         {
@@ -119,6 +124,53 @@ namespace Khaira_Freight.Models
         public virtual ObjectResult<Nullable<int>> selectAll_driverId()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("selectAll_driverId");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Insert_UserTable(Nullable<int> empId, string username, string password, string empName)
+        {
+            var empIdParameter = empId.HasValue ?
+                new ObjectParameter("EmpId", empId) :
+                new ObjectParameter("EmpId", typeof(int));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            var empNameParameter = empName != null ?
+                new ObjectParameter("EmpName", empName) :
+                new ObjectParameter("EmpName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Insert_UserTable", empIdParameter, usernameParameter, passwordParameter, empNameParameter);
+        }
+    
+        public virtual ObjectResult<Validate_UserTable_Result> Validate_UserTable(string username, string password)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Validate_UserTable_Result>("Validate_UserTable", usernameParameter, passwordParameter);
+        }
+    
+        public virtual ObjectResult<Validate_UserTable_Result> ValidateUser(string username, string password)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Validate_UserTable_Result>("ValidateUser", usernameParameter, passwordParameter);
         }
     }
 }
