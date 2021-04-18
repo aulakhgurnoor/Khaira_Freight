@@ -4,10 +4,11 @@
     ViewBag.Title = "Profile";
     Layout = "~/Views/Shared/DispatchLayout.cshtml";
 }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
     #main {
-      //  background-image: url('/Content/images/profile.jpg.jpg');
+      
         background-attachment: fixed;
         background-size: 50% 150%;
     }
@@ -20,7 +21,7 @@
         border-radius: 10px;
         border: 6px solid #305A72;
         max-width: 600px;
-        min-width:min-content;
+        min-width: min-content;
     }
 
     h4 {
@@ -167,7 +168,7 @@
 
             @*<h4 id="btn_style">@Html.ActionLink("Login Info", "LoginInfo")</h4>*@
 
-            <h4 id="btn_style"> @Html.ActionLink("Edit Profile", "EditProfile", new { id = item.dispatch_id }) </h4>
+            <h4 id="btn_style"><i class="fa fa-fw fa-pencil"></i> @Html.ActionLink("Edit Profile", "EditProfile", new { id = item.dispatch_id }) </h4>
         }
 
 

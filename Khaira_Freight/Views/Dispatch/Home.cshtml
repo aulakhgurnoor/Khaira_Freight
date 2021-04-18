@@ -5,60 +5,590 @@
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/DispatchLayout.cshtml";
 }
-<style>
-    .button {
-        background-color: #4CAF50; /* Green */
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 36px;
-        margin: 4px 2px;
-        cursor: pointer;
-    }
 
-        .button:hover {
-            background-color: lightblue;
+    <html>
+    <head>
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                color: darkslategray;
+            }
+
+            #main {
+                background-attachment: fixed;
+                background-size: 50% 150%;
+            }
+
+            #weather-box {
+                display: flex;
+                max-width: 500px;
+                flex-direction: row;
+            }
+
+            #container {
+                background-color: lavender;
+                padding: 30px;
+                margin: 50px 30px;
+                box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+                border-radius: 10px;
+                border: 6px solid #305A72;
+                max-width: 600px;
+                min-width: 200px;
+            }
+
+                #container:hover {
+                    color: #ffffff !important;
+                    background: #bccbde;
+                    border-color: #bccbde !important;
+                    transition: all 0.4s ease 0s;
+                }
+
+            @@media (max-width: 800px) {
+                #weather-box {
+                    flex-direction: column;
+                }
+            }
+        </style>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+    </head>
+
+    <body>
+        @*<div>
+            <strong>City Name  :</strong><input id="txtCity" type="text" />
+            <br />
+            <br />
+
+            <button id="btnSubmit">Get Weather Forecast</button>
+        </div>*@
+        <div id="main">
+            <div id="weather-box">
+                <div id="container">
+
+
+                    <h2 id="City"></h2>
+                    <table>
+                        <tr>
+                            <td><img id="imgWeatherIconUrl" src="" /><label id="lblDescription"></label></td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                @*<strong>City: </strong>*@
+                                <strong>
+                                    <span id="lblCity"></span>  ,
+                                    <span id="lblCountry"></span>
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>COORDINATES: </strong>
+                                <label id="lblLat"></label>,
+
+                                <label id="lblLon"></label>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <strong>TEMPERATURE: </strong> <label id="lblTemp"></label>&#176;<br />
+                                <strong>FEELS LIKE: </strong> <label id="lblTempFeelsLike"></label>&#176;<br />
+                                <strong>HIGH: </strong>  <label id="lblTempMin"></label>&#176;<br />
+                                <strong>LOW: </strong><label id="lblTempMax"></label>&#176;<br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>HUMIDITY: </strong>
+                                <label id="lblHumidity"></label>%<br />
+                                <strong>WIND: </strong>
+                                <label id="lblspeed"></label> km/h , <label id="lbldeg"></label><br />
+
+                            </td>
+                        </tr>
+
+
+                    </table>
+                </div>
+
+
+                <div id="container">
+
+
+                    <h2 id="City2"></h2>
+                    <table>
+                        <tr>
+                            <td><img id="imgWeatherIconUrl2" src="" /><label id="lblDescription2"></label></td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                @*<strong>City: </strong>*@
+                                <strong>
+                                    <span id="lblCity2"></span>  ,
+                                    <span id="lblCountry2"></span>
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>COORDINATES: </strong>
+                                <label id="lblLat2"></label>,
+
+                                <label id="lblLon2"></label>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <strong>TEMPERATURE: </strong> <label id="lblTemp2"></label>&#176;<br />
+                                <strong>FEELS LIKE: </strong> <label id="lblTempFeelsLike2"></label>&#176;<br />
+                                <strong>HIGH: </strong>  <label id="lblTempMin2"></label>&#176;<br />
+                                <strong>LOW: </strong><label id="lblTempMax2"></label>&#176;<br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>HUMIDITY: </strong>
+                                <label id="lblHumidity2"></label>%<br />
+                                <strong>WIND: </strong>
+                                <label id="lblspeed2"></label> km/h , <label id="lbldeg2"></label><br />
+
+                            </td>
+                        </tr>
+
+
+                    </table>
+                </div>
+
+                <div id="container">
+
+
+                    <h2 id="City3"></h2>
+                    <table>
+                        <tr>
+                            <td><img id="imgWeatherIconUrl3" src="" /><label id="lblDescription3"></label></td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                @*<strong>City: </strong>*@
+                                <strong>
+                                    <span id="lblCity3"></span>  ,
+                                    <span id="lblCountry3"></span>
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>COORDINATES: </strong>
+                                <label id="lblLat3"></label>,
+
+                                <label id="lblLon3"></label>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <strong>TEMPERATURE: </strong> <label id="lblTemp3"></label>&#176;<br />
+                                <strong>FEELS LIKE: </strong> <label id="lblTempFeelsLike3"></label>&#176;<br />
+                                <strong>HIGH: </strong>  <label id="lblTempMin3"></label>&#176;<br />
+                                <strong>LOW: </strong><label id="lblTempMax3"></label>&#176;<br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>HUMIDITY: </strong>
+                                <label id="lblHumidity3"></label>%<br />
+                                <strong>WIND: </strong>
+                                <label id="lblspeed3"></label> km/h , <label id="lbldeg3"></label><br />
+
+                            </td>
+                        </tr>
+
+
+                    </table>
+                </div>
+            </div>
+
+            <div id="weather-box">
+                <div id="container">
+
+
+                    <h2 id="City4"></h2>
+                    <table>
+                        <tr>
+                            <td><img id="imgWeatherIconUrl4" src="" /><label id="lblDescription4"></label></td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                @*<strong>City: </strong>*@
+                                <strong>
+                                    <span id="lblCity4"></span>  ,
+                                    <span id="lblCountry4"></span>
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>COORDINATES: </strong>
+                                <label id="lblLat4"></label>,
+
+                                <label id="lblLon4"></label>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <strong>TEMPERATURE: </strong> <label id="lblTemp4"></label>&#176;<br />
+                                <strong>FEELS LIKE: </strong> <label id="lblTempFeelsLike4"></label>&#176;<br />
+                                <strong>HIGH: </strong>  <label id="lblTempMin4"></label>&#176;<br />
+                                <strong>LOW: </strong><label id="lblTempMax4"></label>&#176;<br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>HUMIDITY: </strong>
+                                <label id="lblHumidity4"></label>%<br />
+                                <strong>WIND: </strong>
+                                <label id="lblspeed4"></label> km/h , <label id="lbldeg4"></label><br />
+
+                            </td>
+                        </tr>
+
+
+                    </table>
+                </div>
+
+                <div id="container">
+
+
+                    <h2 id="City5"></h2>
+                    <table>
+                        <tr>
+                            <td><img id="imgWeatherIconUrl5" src="" /><label id="lblDescription5"></label></td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                @*<strong>City: </strong>*@
+                                <strong>
+                                    <span id="lblCity5"></span>  ,
+                                    <span id="lblCountry5"></span>
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>COORDINATES: </strong>
+                                <label id="lblLat5"></label>,
+
+                                <label id="lblLon5"></label>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <strong>TEMPERATURE: </strong> <label id="lblTemp5"></label>&#176;<br />
+                                <strong>FEELS LIKE: </strong> <label id="lblTempFeelsLike5"></label>&#176;<br />
+                                <strong>HIGH: </strong>  <label id="lblTempMin5"></label>&#176;<br />
+                                <strong>LOW: </strong><label id="lblTempMax5"></label>&#176;<br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>HUMIDITY: </strong>
+                                <label id="lblHumidity5"></label>%<br />
+                                <strong>WIND: </strong>
+                                <label id="lblspeed5"></label> km/h , <label id="lbldeg5"></label><br />
+
+                            </td>
+                        </tr>
+
+
+                    </table>
+                </div>
+
+                <div id="container">
+
+
+                    <h2 id="City6"></h2>
+                    <table>
+                        <tr>
+                            <td><img id="imgWeatherIconUrl6" src="" /><label id="lblDescription6"></label></td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                @*<strong>City: </strong>*@
+                                <strong>
+                                    <span id="lblCity6"></span>  ,
+                                    <span id="lblCountry6"></span>
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>COORDINATES: </strong>
+                                <label id="lblLat6"></label>,
+
+                                <label id="lblLon6"></label>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <strong>TEMPERATURE: </strong> <label id="lblTemp6"></label>&#176;<br />
+                                <strong>FEELS LIKE: </strong> <label id="lblTempFeelsLike6"></label>&#176;<br />
+                                <strong>HIGH: </strong>  <label id="lblTempMin6"></label>&#176;<br />
+                                <strong>LOW: </strong><label id="lblTempMax6"></label>&#176;<br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>HUMIDITY: </strong>
+                                <label id="lblHumidity6"></label>%<br />
+                                <strong>WIND: </strong>
+                                <label id="lblspeed6"></label> km/h , <label id="lbldeg6"></label><br />
+
+                            </td>
+                        </tr>
+
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </body>
+    </html>
+
+
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+
+
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<script type="text/javascript">
+    //$("#btnSubmit").click(function () {
+    $(document).ready(function () {
+        //var cityname = $("#txtCity").val();
+        var cityname = 'Calgary';
+        if (cityname.length > 0) {
+            $.ajax({
+                url: "https://localhost:44325/Dispatch/WeatherDetail?City=" + cityname,
+                type: "POST",
+                success: function (rsltval) {
+                    var data = JSON.parse(rsltval);
+                    console.log(data);
+                    $("#City").html(data.City);
+                    $("#lblCity").html(data.City);
+                    $("#lblCountry").text(data.Country);
+                    $("#lblLat").text(data.Lat);
+                    $("#lblLon").text(data.Lon);
+                    $("#lblDescription").text(data.Description);
+                    $("#lblHumidity").text(data.Humidity);
+                    $("#lblTempFeelsLike").text(data.TempFeelsLike);
+                    $("#lblTemp").text(data.Temp);
+                    $("#lblTempMax").text(data.TempMax);
+                    $("#lblTempMin").text(data.TempMin);
+                    $("#imgWeatherIconUrl").attr("src", "http://openweathermap.org/img/w/" + data.WeatherIcon + ".png");
+
+                    $("#lblspeed").text(data.windSpeed);
+                    $("#lbldeg").text(data.windDeg);
+
+
+                    //data - response from server
+                },
+                error: function () {
+
+                }
+            });
+        }
+        else {
+            alert("City Not Found");
         }
 
-    .button1 {
-        margin-left: 100px;
-    }
+        //
+        var cityname2 = 'Cambridge';
+        if (cityname2.length > 0) {
+            $.ajax({
+                url: "https://localhost:44325/Dispatch/WeatherDetail?City=" + cityname2,
+                type: "POST",
+                success: function (rsltval) {
+                    var data = JSON.parse(rsltval);
+                    console.log(data);
+                    $("#City2").html(data.City);
+                    $("#lblCity2").html(data.City);
+                    $("#lblCountry2").text(data.Country);
+                    $("#lblLat2").text(data.Lat);
+                    $("#lblLon2").text(data.Lon);
+                    $("#lblDescription2").text(data.Description);
+                    $("#lblHumidity2").text(data.Humidity);
+                    $("#lblTempFeelsLike2").text(data.TempFeelsLike);
+                    $("#lblTemp2").text(data.Temp);
+                    $("#lblTempMax2").text(data.TempMax);
+                    $("#lblTempMin2").text(data.TempMin);
+                    $("#imgWeatherIconUrl2").attr("src", "http://openweathermap.org/img/w/" + data.WeatherIcon + ".png");
+                    //data - response from server
+                    $("#lblspeed2").text(data.windSpeed);
+                    $("#lbldeg2").text(data.windDeg);
+                },
+                error: function () {
 
-    .button2 {
-        margin-left: 400px;
-    }
+                }
+            });
+        }
+        else {
+            alert("City Not Found");
+        }
+        //
+        var cityname3 = 'Dallas';
+        if (cityname3.length > 0) {
+            $.ajax({
+                url: "https://localhost:44325/Dispatch/WeatherDetail?City=" + cityname3,
+                type: "POST",
+                success: function (rsltval) {
+                    var data = JSON.parse(rsltval);
+                    console.log(data);
+                    $("#City3").html(data.City);
+                    $("#lblCity3").html(data.City);
+                    $("#lblCountry3").text(data.Country);
+                    $("#lblLat3").text(data.Lat);
+                    $("#lblLon3").text(data.Lon);
+                    $("#lblDescription3").text(data.Description);
+                    $("#lblHumidity3").text(data.Humidity);
+                    $("#lblTempFeelsLike3").text(data.TempFeelsLike);
+                    $("#lblTemp3").text(data.Temp);
+                    $("#lblTempMax3").text(data.TempMax);
+                    $("#lblTempMin3").text(data.TempMin);
+                    $("#imgWeatherIconUrl3").attr("src", "http://openweathermap.org/img/w/" + data.WeatherIcon + ".png");
+                    //data - response from server
+                    $("#lblspeed3").text(data.windSpeed);
+                    $("#lbldeg3").text(data.windDeg);
+                },
+                error: function () {
 
-    .button3 {
-        margin-top: 80px;
-        margin-left: 450px;
-    }
+                }
+            });
+        }
+        else {
+            alert("City Not Found");
+        }
 
-    
+        //
+        var cityname4 = 'Detroit';
+        if (cityname4.length > 0) {
+            $.ajax({
+                url: "https://localhost:44325/Dispatch/WeatherDetail?City=" + cityname4,
+                type: "POST",
+                success: function (rsltval) {
+                    var data = JSON.parse(rsltval);
+                    console.log(data);
+                    $("#City4").html(data.City);
+                    $("#lblCity4").html(data.City);
+                    $("#lblCountry4").text(data.Country);
+                    $("#lblLat4").text(data.Lat);
+                    $("#lblLon4").text(data.Lon);
+                    $("#lblDescription4").text(data.Description);
+                    $("#lblHumidity4").text(data.Humidity);
+                    $("#lblTempFeelsLike4").text(data.TempFeelsLike);
+                    $("#lblTemp4").text(data.Temp);
+                    $("#lblTempMax4").text(data.TempMax);
+                    $("#lblTempMin4").text(data.TempMin);
+                    $("#imgWeatherIconUrl4").attr("src", "http://openweathermap.org/img/w/" + data.WeatherIcon + ".png");
+                    //data - response from server
+                    $("#lblspeed4").text(data.windSpeed);
+                    $("#lbldeg4").text(data.windDeg);
+                },
+                error: function () {
 
-    .image {
-        margin-left: 200px;
-    }
-</style>
+                }
+            });
+        }
+        else {
+            alert("City Not Found");
+        }
+
+        //
+        var cityname5 = 'Toronto';
+        if (cityname5.length > 0) {
+            $.ajax({
+                url: "https://localhost:44325/Dispatch/WeatherDetail?City=" + cityname5,
+                type: "POST",
+                success: function (rsltval) {
+                    var data = JSON.parse(rsltval);
+                    console.log(data);
+                    $("#City5").html(data.City);
+                    $("#lblCity5").html(data.City);
+                    $("#lblCountry5").text(data.Country);
+                    $("#lblLat5").text(data.Lat);
+                    $("#lblLon5").text(data.Lon);
+                    $("#lblDescription5").text(data.Description);
+                    $("#lblHumidity5").text(data.Humidity);
+                    $("#lblTempFeelsLike5").text(data.TempFeelsLike);
+                    $("#lblTemp5").text(data.Temp);
+                    $("#lblTempMax5").text(data.TempMax);
+                    $("#lblTempMin5").text(data.TempMin);
+                    $("#imgWeatherIconUrl5").attr("src", "http://openweathermap.org/img/w/" + data.WeatherIcon + ".png");
+                    //data - response from server
+                    $("#lblspeed5").text(data.windSpeed);
+                    $("#lbldeg5").text(data.windDeg);
+                },
+                error: function () {
+
+                }
+            });
+        }
+        else {
+            alert("City Not Found");
+        }
+
+        //
+        var cityname6 = 'Vancouver';
+        if (cityname6.length > 0) {
+            $.ajax({
+                url: "https://localhost:44325/Dispatch/WeatherDetail?City=" + cityname6,
+                type: "POST",
+                success: function (rsltval) {
+                    var data = JSON.parse(rsltval);
+                    console.log(data);
+                    $("#City6").html(data.City);
+                    $("#lblCity6").html(data.City);
+                    $("#lblCountry6").text(data.Country);
+                    $("#lblLat6").text(data.Lat);
+                    $("#lblLon6").text(data.Lon);
+                    $("#lblDescription6").text(data.Description);
+                    $("#lblHumidity6").text(data.Humidity);
+                    $("#lblTempFeelsLike6").text(data.TempFeelsLike);
+                    $("#lblTemp6").text(data.Temp);
+                    $("#lblTempMax6").text(data.TempMax);
+                    $("#lblTempMin6").text(data.TempMin);
+                    $("#imgWeatherIconUrl6").attr("src", "http://openweathermap.org/img/w/" + data.WeatherIcon + ".png");
+                    //data - response from server
+                    $("#lblspeed6").text(data.windSpeed);
+                    $("#lbldeg6").text(data.windDeg);
+                },
+                error: function () {
+
+                }
+            });
+        }
+        else {
+            alert("City Not Found");
+        }
+
+    });
 
 
-@*<div class="form-horizontal  breadcrumb" style="        background-color:lavender;
-        padding: 30px;
-        margin: 50px auto;
-        box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
-        border-radius: 10px;
-        border: 6px solid #305A72;
-        min-width:min-content;
-        " id="dispatch">
-
-    <h2> Welcome Dispatcher</h2>
-    <p>Here you can add the planner and view it in the Weekly calender</p>
-
-    <button class="button button1" onclick="window.location.href='/Dispatch/Index'"> Truck Details</button>
-    <button class=" button button2" onclick="window.location.href='/Dispatch/Calender'"> Calender</button>
-    <button class=" button button3" onclick="window.location.href='/Dispatch/PlannerList'"> Planner</button>
-</div>*@
-
+</script>
 

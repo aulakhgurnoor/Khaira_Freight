@@ -1,0 +1,191 @@
+﻿
+@{
+    ViewBag.Title = "Weather";
+    Layout = "~/Views/Shared/DriverLayout.cshtml";
+}
+<h1>Search City and Get Weather Forecast</h1>
+<html>
+<head>
+    <style>
+    </style>
+</head>
+
+<body class="container body-content">
+    <div>
+        <strong>City Name  :</strong><input id="txtCity" type="text" />
+        <br />
+        <br />
+
+        <button id="btnSubmit">Get Weather Forecast</button>
+    </div>
+
+
+    <div>
+        <h2>Weather Forecast</h2>
+        <table>
+            <tr>
+                <td>Weather Symbol Icon <img id="imgWeatherIconUrl" src="" title="Weather Icon" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>City: </strong>
+                    <span id="lblCity"></span>  ,
+                    <span id="lblCountry"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Latitude: </strong>
+                    <label id="lblLat"></label><br />
+                    <strong>Longitude: </strong>
+                    <label id="lblLon"></label>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Description:</strong>
+                    <label id="lblDescription"></label><br />
+                    <strong>Humidity:</strong>
+                    <label id="lblHumidity"></label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Temperature (Feels Like)<label id="lblTempFeelsLike"></label><br />
+                    Temperature <label id="lblTemp"></label><br />
+                    Temperature (Min)<label id="lblTempMin"></label><br />
+                    Temperature (Max)<label id="lblTempMax"></label><br />
+                </td>
+            </tr>
+
+
+        </table>
+    </div>
+
+    <div>
+        <h2>Weather Forecast</h2>
+        <table>
+            <tr>
+                <td>Weather Symbol Icon <img id="imgWeatherIconUrl2" src="" title="Weather Icon" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>City: </strong>
+                    <span id="lblCity2"></span>  ,
+                    <span id="lblCountry2"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Latitude: </strong>
+                    <label id="lblLat2"></label><br />
+                    <strong>Longitude: </strong>
+                    <label id="lblLon2"></label>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Description:</strong>
+                    <label id="lblDescription2"></label><br />
+                    <strong>Humidity:</strong>
+                    <label id="lblHumidity2"></label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Temperature (Feels Like)<label id="lblTempFeelsLike2"></label><br />
+                    Temperature <label id="lblTemp2"></label><br />
+                    Temperature (Min)<label id="lblTempMin2"></label><br />
+                    Temperature (Max)<label id="lblTempMax2"></label><br />
+                </td>
+            </tr>
+
+
+        </table>
+    </div>
+</body>
+
+
+
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+
+
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<script type="text/javascript">
+    //$("#btnSubmit").click(function () {    
+       $(document).ready(function () {
+           //var cityname = $("#txtCity").val(); 
+           var cityname = 'Toronto';
+        if (cityname.length > 0)    
+        {    
+        $.ajax({    
+ url: "https://localhost:44325/Home/WeatherDetail?City=" + cityname,    
+            type: "POST",    
+            success: function (rsltval) {    
+                var data =JSON.parse(rsltval);    
+                console.log(data);    
+                $("#lblCity").html(data.City);    
+                $("#lblCountry").text(data.Country);    
+                $("#lblLat").text(data.Lat);    
+                $("#lblLon").text(data.Lon);    
+                $("#lblDescription").text(data.Description);    
+                $("#lblHumidity").text(data.Humidity);    
+                $("#lblTempFeelsLike").text(data.TempFeelsLike);    
+                $("#lblTemp").text(data.Temp);    
+                $("#lblTempMax").text(data.TempMax);    
+                $("#lblTempMin").text(data.TempMin);    
+                $("#imgWeatherIconUrl").attr("src", "http://openweathermap.org/img/w/" + data.WeatherIcon + ".png");    
+                //data - response from server    
+            },    
+            error: function () {    
+    
+            }    
+        });    
+        }    
+        else    
+        {    
+            alert("City Not Found");    
+           }   
+
+           //
+             var cityname2 = 'Brampton';
+        if (cityname2.length > 0)    
+        {    
+        $.ajax({    
+ url: "https://localhost:44325/Home/WeatherDetail?City=" + cityname2,    
+            type: "POST",    
+            success: function (rsltval) {    
+                var data =JSON.parse(rsltval);    
+                console.log(data);    
+                $("#lblCity2").html(data.City);    
+                $("#lblCountry2").text(data.Country);    
+                $("#lblLat2").text(data.Lat);    
+                $("#lblLon2").text(data.Lon);    
+                $("#lblDescription2").text(data.Description);    
+                $("#lblHumidity2").text(data.Humidity);    
+                $("#lblTempFeelsLike2").text(data.TempFeelsLike);    
+                $("#lblTemp2").text(data.Temp);    
+                $("#lblTempMax2").text(data.TempMax);    
+                $("#lblTempMin2").text(data.TempMin);    
+                $("#imgWeatherIconUrl2").attr("src", "http://openweathermap.org/img/w/" + data.WeatherIcon + ".png");    
+                //data - response from server    
+            },    
+            error: function () {    
+    
+            }    
+        });    
+        }    
+        else    
+        {    
+            alert("City Not Found");    
+           }   
+           
+    });    
+
+
+</script>
+</html>

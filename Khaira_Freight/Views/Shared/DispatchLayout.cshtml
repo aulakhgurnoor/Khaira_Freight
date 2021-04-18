@@ -8,12 +8,19 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style>
+        .navbar-custom {
+            background-color: white;
+                        font-family:'Segoe UI', Arial, sans-serif;
+
+        }
         body {
             -webkit-text-stroke-width: 0.3px;
-            font-family: "Lato", sans-serif;
-            background-image: url('../../Content/images/jeshoots-com-pUAM5hPaCRI-unsplash.jpg');
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-image: url('../../Content/images/scott-webb-VL-OvBppmzI-unsplash.jpg');
             background-attachment: fixed;
+            background-position: center;
             background-size: cover;
+            background-repeat: no-repeat;
             position: absolute;
             top: 0;
             bottom: 0;
@@ -24,13 +31,18 @@
         .copyright-footer {
             width: 100%;
             color: black;
-             background-color:transparent;
+            background-color: transparent;
             text-align: center;
             height: 50px;
             padding-top: 15px;
             margin-bottom: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
-
+        .copyright{
+            text-shadow:2px 2px #f1560e;
+            color:white;
+            font-size:20px;
+        }
         .sidenav {
             height: 100%;
             width: 0;
@@ -57,6 +69,8 @@
             color: #818181;
             display: block;
             transition: 0.3s;
+                        font-family:'Segoe UI', Arial, sans-serif;
+
         }
 
             .sidenav a:hover {
@@ -140,7 +154,7 @@
 
                         @*Logout*@
                         <li class="nav-item">
-                            <a href="#" onclick="document.forms[0].submit();">Logout</a>
+                            <a href="#" onclick="document.forms[0].submit();"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
                             @*Logout*@
                     </ul>
                 </div>
@@ -150,11 +164,11 @@
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="/Dispatch/Home" class="nav-link"><i class="fa fa-fw fa-home"></i>Home</a>
             <a href="/Dispatch/UserProfile" class="nav-link"><i class="fa fa-fw fa-user"></i>Profile</a>
-            <a href="/Dispatch/PlannerList" class="nav-link">Planner</a>
-            <a href="/Dispatch/Calender" class="nav-link">Calender</a>
-            <a href="/Dispatch/Index" class="nav-link">Trucks</a>
-            <a href="/Dispatch/PayStatement">PayStubs</a>
-            <a href="#" onclick="document.forms[0].submit();"><i class="fa fa-log-out-alt"></i>Logout</a>
+            <a href="/Dispatch/PlannerList" class="nav-link"><i class="fa fa-fw fa-flag"></i>Planner</a>
+            <a href="/Dispatch/Calender" class="nav-link"><i class="fa fa-fw fa-calendar"></i>Calender</a>
+            <a href="/Dispatch/Index" class="nav-link"><i class="fa fa-fw fa-truck"></i>Trucks</a>
+            <a href="/Dispatch/PayStatement"><i class="fa fa-fw fa-credit-card"></i>PayStubs</a>
+            <a href="#" onclick="document.forms[0].submit();"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
 
         </div>
         <div class="flex-wrapper">

@@ -11,18 +11,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>Index</title>
     <style type="text/css">
 
-                body {
-                  
-                    background-image: url('../../Content/images/annie-spratt-0ZPSX_mQ3xI-unsplash.jpg');
-                          /*background-color: #b2cecf;*/
-                    font-family: Arial, Helvetica, sans-serif;
-                     background-attachment: fixed;
-                             background-size: cover;
-                }
+        body {
+            background-image: url('../../Content/images/annie-spratt-0ZPSX_mQ3xI-unsplash.jpg');
+            /*background-color: #b2cecf;*/
+            font-family: Arial, Helvetica, sans-serif;
+            background-attachment: fixed;
+            background-size: cover;
+        }
         /*body {
                     font-family: Arial;
                     font-size: 10pt;
@@ -33,8 +33,8 @@
                     left: 0;
                     background-image: url('../../Content/images/yellow-truck.jpg');
                     height:100vh;*/
-                /**/ /*}*/
-                /*.body-content1 {
+        /**/ /*}*/
+        /*.body-content1 {
                     background-image: url('../../Content/images/kf1.jfif');
                     padding-left: 300px;
                     padding-right: 0;
@@ -45,59 +45,59 @@
                     margin-top: -50px;
                     margin-bottom: -50px;
                 }*/
-                /*.form-wrapper {
+        /*.form-wrapper {
                     max-width: 450px;
                     width: 100%;
                     top: 50%;
                     margin-left:200px;*/
-                /*            transform: translate(-50%, -50%);
+        /*            transform: translate(-50%, -50%);
         */ /*margin-top: 50px;
                     margin-left: 50px;*/
-                /*}*/
+        /*}*/
 
-                .input {
-                    width: 350px;
-                    background-color: azure;
-                    height: 35px;
-                }
+        .input {
+            width: 280px;
+            background-color: azure;
+            height: 35px;
+        }
 
-                #password {
-                    width: 350px;
-                    background-color: azure;
-                    height: 35px;
-                }
+        #password {
+            width: 300px;
+            background-color: azure;
+            height: 35px;
+        }
 
-                .error {
-                    color: red;
-                }
+        .error {
+            color: red;
+        }
 
-                .loginbtn {
-                    background-color: #4CAF50;
-                    color: white;
-                    padding: 14px 20px;
-                    margin: 8px 0;
-                    border: none;
-                    cursor: pointer;
-                    width: 350px;
-                }
+        .loginbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 370px;
+        }
 
-                    .loginbtn:hover {
-                        opacity: 0.8;
-                    }
+            .loginbtn:hover {
+                opacity: 0.8;
+            }
 
-                .cancelbtn {
-                    background-color: #f44336;
-                    color: white;
-                    padding: 14px 20px;
-                    margin: 8px 0;
-                    border: none;
-                    cursor: pointer;
-                    width: 280px;
-                }
+        .cancelbtn {
+            background-color: #f44336;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 280px;
+        }
 
-                    .cancelbtn:hover {
-                        opacity: 0.8;
-                    }
+            .cancelbtn:hover {
+                opacity: 0.8;
+            }
     </style>
 </head>
 <body>
@@ -118,18 +118,21 @@
                 <h3>Sign in</h3>
                 <p>With your Account</p><br /><br />
                 <label>Username</label><br />
+                <i class="fa fa-user"></i>
                 @Html.TextBoxFor(m => m.Username, "", new { @class = "input", id = "h" }) <br />
 
                 @Html.ValidationMessageFor(m => m.Username, "", new { @class = "error" }) <br />
 
                 <label>Password</label> <br />
+                <i class="fa fa-key"></i>
                 @Html.PasswordFor(m => m.Password, new { @class = "input", @id = "h" }) <br />
 
                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "error" }) <br />
 
-                <label>Remember Me</label>
 
-                @Html.CheckBoxFor(m => m.RememberMe)<br />
+
+                @Html.CheckBoxFor(m => m.RememberMe)
+                <label>Remember Username</label><br />
                 <input type="hidden" name="ReturnUrl" value="@Request.QueryString["ReturnUrl"]" /><br />
                 <input class="loginbtn" type="submit" value="Login" /><br />
                 <button type="reset" class="cancelbtn">Cancel</button>

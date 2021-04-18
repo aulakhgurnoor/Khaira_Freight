@@ -9,10 +9,11 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace Khaira_Freight.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class DriverController : Controller
     {
         // GET: Driver
@@ -33,10 +34,6 @@ namespace Khaira_Freight.Controllers
             return View(LoginList);
         }
        
-        public ActionResult Home()
-        {
-            return View();
-        }
 
 
         //public ActionResult Home(int? id)
@@ -289,6 +286,68 @@ namespace Khaira_Freight.Controllers
                 return RedirectToAction("UserProfile");
             }
             return View(table_driver);
+        }
+        public string Compass_ReadingChanged(int deg)
+        {
+          
+            var degrees = deg;
+            string[] caridnals = { "N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW", "N" };
+            var test = caridnals[(int)Math.Round(((double)degrees * 10 % 3600) / 225)];
+            string res = test.ToString();
+            return (res);
+          
+        }
+
+        public ActionResult Home()
+        {
+            return View();
+        }
+        [HttpPost]
+        public String WeatherDetail(string City)
+        {
+
+            //Assign API KEY which received from OPENWEATHERMAP.ORG  
+            string appId = "c4ac79f67ab08288e5898e9e134ba6a7";
+
+            //API path with CITY parameter and other parameters.  
+            string url = string.Format("http://api.openweathermap.org/data/2.5/weather?q={0}&units=metric&cnt=1&APPID={1}", City, appId);
+
+            using (WebClient client = new WebClient())
+            {
+                string json = client.DownloadString(url);
+
+          
+                RootObject weatherInfo = (new JavaScriptSerializer()).Deserialize<RootObject>(json);
+
+                //Special VIEWMODEL design to send only required fields not all fields which received from   
+                //www.openweathermap.org api  
+                ResultViewModel rslt = new ResultViewModel();
+
+                rslt.Country = weatherInfo.sys.country;
+                rslt.City = weatherInfo.name;
+                rslt.Lat = Convert.ToString(weatherInfo.coord.lat);
+                rslt.Lon = Convert.ToString(weatherInfo.coord.lon);
+                rslt.Description = weatherInfo.weather[0].description;
+                rslt.Humidity = Convert.ToString(weatherInfo.main.humidity);
+                rslt.Temp = Convert.ToString(Math.Round(weatherInfo.main.temp));
+                rslt.TempFeelsLike = Convert.ToString(Math.Round(weatherInfo.main.feels_like));
+                rslt.TempMax = Convert.ToString(Math.Round(weatherInfo.main.temp_max));
+                rslt.TempMin = Convert.ToString(Math.Round(weatherInfo.main.temp_min));
+                rslt.WeatherIcon = weatherInfo.weather[0].icon;
+
+                rslt.windSpeed = Convert.ToString(Math.Round((weatherInfo.wind.speed)*3.6));
+                //
+                string degree = Compass_ReadingChanged(weatherInfo.wind.deg);
+                //
+                rslt.windDeg = degree;
+               // rslt.visibility = Convert.ToString(weatherInfo.visibility);
+
+                //Converting OBJECT to JSON String   
+                var jsonstring = new JavaScriptSerializer().Serialize(rslt);
+
+                //Return JSON string.  
+                return jsonstring;
+            }
         }
 
 

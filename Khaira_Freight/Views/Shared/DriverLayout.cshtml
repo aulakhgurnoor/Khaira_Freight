@@ -22,9 +22,14 @@
 
 
     <style>
+        .navbar-custom {
+            background-color: white;
+                        font-family:'Segoe UI', Arial, sans-serif;
+
+        }
                 body {
                     -webkit-text-stroke-width: 0.3px;
-                    font-family: "Lato", sans-serif;
+            font-family:'Segoe UI', Arial, sans-serif;
                     background-image: url('../../Content/images/scott-webb-VL-OvBppmzI-unsplash.jpg');
                     background-attachment: fixed;
                     background-position: center;
@@ -38,23 +43,24 @@
                     left: 0;
                 }
 
-                #main {
-                    transition: margin-left .5s;
-                    padding: 25px;
-                    padding-bottom: 50px;
-                    /*            height: 100vh;
+        #main {
+            transition: margin-left .5s;
+            padding: 25px;
+            padding-bottom: 50px;
+            /*            height: 100vh;
         */
-                }
+        }
 
-                .copyright-footer {
-                    width: 100%;
-                    color: black;
-             background-color:transparent;
-                    text-align: center;
-                    height: 50px;
-                    padding-top: 15px;
-                    margin-bottom: 0;
-                }
+        .copyright-footer {
+            width: 100%;
+            color: black;
+            background-color: transparent;
+            text-align: center;
+            height: 50px;
+            padding-top: 15px;
+            margin-bottom: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
 
         .sidenav {
             height: 100%;
@@ -67,6 +73,8 @@
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 60px;
+                        font-family:'Segoe UI', Arial, sans-serif;
+
         }
 
                     .sidenav a {
@@ -82,24 +90,24 @@
                             color: #f1f1f1;
                         }
 
-                    .sidenav .closebtn {
-                        position: absolute;
-                        margin-top: -50px;
-                        right: 25px;
-                        font-size: 36px;
-                        margin-left: 50px;
-                    }
+            .sidenav .closebtn {
+                position: absolute;
+                margin-top: -50px;
+                right: 25px;
+                font-size: 36px;
+                margin-left: 50px;
+            }
 
                     .sidenav b {
                         color: white;
                     }
 
-                .flex-wrapper {
-                    display: flex;
-                    min-height: 100vh;
-                    flex-direction: column;
-                    justify-content: space-between;
-                }
+        .flex-wrapper {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
                 @@media screen and (max-height: 450px) {
                     .sidenav {
@@ -126,6 +134,11 @@
             border-color: #f6b93b !important;
             transition: all 0.4s ease 0s;
         }
+        .copyright{
+            text-shadow:2px 2px #f1560e;
+            color:white;
+            font-size:20px;
+        }
     </style>
 
 </head>
@@ -147,7 +160,7 @@
 
                         @*Logout*@
                         <li class="nav-item">
-                            <a href="#" onclick="document.forms[0].submit();"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                            <a href="#" onclick="document.forms[0].submit();"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
                             @*Logout*@
                     </ul>
 
@@ -164,8 +177,8 @@
 
             <a href="/Driver/Home" class="nav-link"><i class="fa fa-fw fa-home"></i>Home</a>
             <a href="/Driver/UserProfile" class="nav-link"><i class="fa fa-fw fa-user"></i>Profile</a>
-            <a href="/Driver/PayStatement">PayStubs</a>
-            <a href="#" onclick="document.forms[0].submit();"><i class="fa fa-log-out-alt"></i>Logout</a>
+            <a href="/Driver/PayStatement"><i class="fa fa-fw fa-credit-card"></i>PayStubs</a>
+            <a href="#" onclick="document.forms[0].submit();"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
 
         </div>
 

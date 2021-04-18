@@ -169,6 +169,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>KhairaFreight_Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\OpenWeatherMap.cs" />
     <Compile Include="Models\Pay_Metadata.cs" />
     <Compile Include="Models\pay_statement.cs">
       <DependentUpon>KhairaFreight_Model.tt</DependentUpon>
@@ -204,6 +205,7 @@
     <Compile Include="Models\Validate_UserTable_Result.cs">
       <DependentUpon>KhairaFreight_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WeatherViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -222,9 +224,11 @@
     <Content Include="Content\images\back1.jpg" />
     <Content Include="Content\images\bkgrd.png" />
     <Content Include="Content\images\clock.jpg" />
+    <Content Include="Content\images\driver-application-truck.jfif" />
     <Content Include="Content\images\e1.png" />
     <Content Include="Content\images\emailLogo.jpg" />
     <Content Include="Content\images\favicon.ico" />
+    <Content Include="Content\images\FreightNew.jpeg" />
     <Content Include="Content\images\glo.jpg" />
     <Content Include="Content\images\glo.png" />
     <Content Include="Content\images\jahongir-ismoilov-RcjvFd1k18o-unsplash %281%29.jpg" />
@@ -258,8 +262,11 @@
     <Content Include="Content\images\truck.jpg" />
     <Content Include="Content\images\truck2.jpg" />
     <Content Include="Content\images\truck2_khaira_freight.png" />
+    <Content Include="Content\images\truck3kf.png" />
     <Content Include="Content\images\truck_khaira_freight.png" />
     <Content Include="Content\images\tyler-franta-iusJ25iYu1c-unsplash.jpg" />
+    <Content Include="Content\images\WhatsApp Image 2021-04-12 at 9.56.46 PM.jpeg" />
+    <Content Include="Content\images\WhatsApp Image 2021-04-12 at 9.56.47 PM.jpeg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -591,6 +598,7 @@
     <Content Include="Views\Admin\DeleteDriverApplication.cshtml" />
     <Content Include="Views\Driver\EditProfile.cshtml" />
     <Content Include="Views\Dispatch\EditProfile.cshtml" />
+    <Content Include="Views\Home\Weather.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

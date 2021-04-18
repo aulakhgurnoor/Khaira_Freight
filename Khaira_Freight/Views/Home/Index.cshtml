@@ -8,7 +8,9 @@
     <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
-
+        body{
+            font-family:'Segoe UI', Arial, sans-serif;
+        }
         header .item {
             height: 70vh;
             position: relative;
@@ -121,31 +123,34 @@
 
         .bgimg-2, .bgimg-3, .bgimg-4, .bgimg-5, .bgimg-6 {
             position: relative;
-            opacity: 0.65;
+            opacity: 0.9;
             background-attachment: fixed;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+                  
+
         }
 
 
         .bgimg-2 {
+            background-image: url("../../Content/images/truck3kf.png");
+            min-height: 400px;
+
+        }
+
+        .bgimg-3 {
             background-image: url("../../Content/images/KhairaTruckNew.jpeg");
             min-height: 400px;
         }
 
-        .bgimg-3 {
-            background-image: url("../../Content/images/truck2_khaira_freight.png");
-            min-height: 400px;
-        }
-
         .bgimg-4 {
-            background-image: url("../../Content/images/truck2.jpg");
+            background-image: url("../../Content/images/truck_khaira_freight.png");
             min-height: 400px;
         }
 
         .bgimg-5 {
-            background-image: url("../../Content/images/truck_khaira_freight.png");
+            background-image: url("../../Content/images/truck2_khaira_freight.png");
             min-height: 400px;
         }
 
@@ -247,9 +252,9 @@
         </div>
     </div>
 
-    <div class="bgimg-2">
+    <div class="bgimg-2 ">
         <div class="caption">
-            <span class="border" style="background-color:transparent;font-size:50px;color: #f7f7f7;">
+            <span class="border" style="background-color:transparent;font-size:50px;color: #f7f7f7;  text-shadow: 4px 4px #10355f ;">
                 We Care At Khaira Freight!<br />
                 <button class="button button1" onclick="location.href='@Url.Action("GetQuote", "Home")'">REQUEST A FREE QUOTE</button><br>
             </span>
@@ -277,9 +282,9 @@
     </div>
     <div class="bgimg-3">
         <div class="caption">
-            <span class="border" style="background-color: transparent;font-size: 30px;color: #f7f7f7;text-align: right;">
+            <span class="border" style="background-color:transparent;font-size:50px;color: #f7f7f7;  text-shadow: 4px 4px #10355f ;">
                 Professional Services<br />
-                <b>with international experience.</b><br />
+                with international experience.<br />
                 <input type="button" id="contactButton" value="Contact us" onclick="location.href='@Url.Action("Contact", "Home")'" />
             </span>
 
@@ -306,8 +311,8 @@
     </div>
     <div class="bgimg-4">
         <div class="caption">
-            <span class="border" style="background-color:transparent;font-size:30px;color: #f7f7f7;">
-                Our Mission:<br />
+            <span class="border" style="background-color:transparent;font-size:50px;color: #f7f7f7;  text-shadow: 4px 4px #10355f ;">
+                Our Mission:
 
                 Safety First<br />
                 Reliability And Integrity
@@ -321,7 +326,8 @@
                 <div class="thumbnail" style="border-color:white">
                     <img src="~/Content/images/clock.jpg" alt="Lights" width="120">
                     <div>
-                        <h2 style="text-align:center">On Time. All the Time.</h2>
+                        <h2 style="        text-align: center
+">On Time. All the Time.</h2>
                         <p style="text-align:center">
                             If we say it'll get there by a certain date, rest assured your load will arrive
                             as expected without any surprise. We use the latest communication technology
@@ -361,7 +367,7 @@
     </div>
     <div class="bgimg-5">
         <div class="caption">
-            <span class="border" style="background-color:transparent;font-size:30px;color: #f7f7f7;">
+            <span class="border" style="background-color:transparent;font-size:50px;color: #f7f7f7;  text-shadow: 4px 4px #10355f ;">
                 A Carrier You Can Count On
             </span>
         </div>

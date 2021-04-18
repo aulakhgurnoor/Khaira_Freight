@@ -27,7 +27,7 @@
     
     </style>
     <body>
-        <div style="        width: 120%;
+        <div style="        width: 100%;
         min-width: fit-content;
         background-color: lavender;
         padding: 30px;
@@ -84,7 +84,7 @@
                     <th>
                         Phone
                     </th>
-                    <th>
+                    @*<th>
                         Date of Birth
 
                     </th>
@@ -93,7 +93,7 @@
                     </th>
                     <th>
                         Gender
-                    </th>
+                    </th>*@
                     @*<th>
                         PP Number
                     </th>*@
@@ -145,8 +145,8 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.phone)
                         </td>
-                        <td>
-                            @*@Html.DisplayFor(modelItem => item.dob)*@
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.dob)
                             @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.dob))
                         </td>
                         <td>
@@ -154,7 +154,7 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.gender)
-                        </td>
+                        </td>*@
                         @*<td>
                             @Html.DisplayFor(modelItem => item.pp_number)
                         </td>*@

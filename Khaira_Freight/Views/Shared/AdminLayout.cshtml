@@ -3,14 +3,21 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title>@ViewBag.Title - Admin</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style>
+        .navbar-custom {
+            background-color: white;
+            font-family: 'Segoe UI', Arial, sans-serif;
+  
+        }
 
         body {
             -webkit-text-stroke-width: 0.3px;
-            font-family: "Lato", sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             background-image: url('../../Content/images/laura-davidson-QBAH4IldaZY-unsplash.jpg');
             background-attachment: fixed;
             background-size: cover;
@@ -25,11 +32,13 @@
             resize: both;
             overflow: scroll;*/
         }
-        .body-content {
+
+        /*.body-content {
             padding-left: 0;
             padding-right: 0;
             margin: 0;
-        }
+        }*/
+
         .sidenav {
             height: 100%;
             width: 0;
@@ -41,6 +50,7 @@
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 60px;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
 
             .sidenav a {
@@ -88,55 +98,71 @@
         }
 
         .copyright-footer {
-            width:auto;
+            width: auto;
             color: black;
-            background-color:transparent;
+            background-color: transparent;
             text-align: center;
             height: 50px;
             padding-top: 15px;
             margin-bottom: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
-                    #btnstyle {
-        font-size: 30px;
-        cursor: pointer;
-        background: linear-gradient(to right, #e0eafc, #cfdef3);
-        padding: 5px;
-        box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
-        border-radius: 10px;
-        border: 6px solid #305A72;
-    }
 
-        #btnstyle:hover {
-            color: #ffffff !important;
-            background: #f6b93b;
-            border-color: #f6b93b !important;
-            transition: all 0.4s ease 0s;
+        #btnstyle {
+            font-size: 30px;
+            cursor: pointer;
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+            padding: 5px;
+            box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+            border-radius: 10px;
+            border: 6px solid #305A72;
+        }
+
+            #btnstyle:hover {
+                color: #ffffff !important;
+                background: #f6b93b;
+                border-color: #f6b93b !important;
+                transition: all 0.4s ease 0s;
+            }
+            .copyright{
+            text-shadow:2px 2px #f1560e;
+            color:white;
+            font-size:20px;
         }
     </style>
 </head>
 <body>
 
     @*<nav class="navbar  navbar-inverse navbar-dark navbar-fixed-top bg-dark">*@
-        <nav class="navbar navbar-custom navbar-expand-lg  navbar-fixed-top ">
+        <nav class="navbar navbar-custom navbar-expand-lg navbar-fixed-top ">
             <div class="container-fluid">
 
                 <a class="navbar-brand" href="#"><img src="~/Content/images/logo_khaira_freight_dark_blue.png" alt="logo" style="width:120px; height:30px;" /></a>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        @*<span class="icon-bar"></span>*@
+                        <span class="icon-bar" style="background:black;"></span>
+                        <span class="icon-bar" style="background:black;"></span>
+                        <span class="icon-bar" style="background:black;"></span>
+                    </button>
+                    @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                </div>
                 <div class="navbar-collapse collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav navbar-right mr-auto">
                         @*<li class="nav-item"><a href="/Admin/Dashboard" class="nav-link">Home</a></li>
 
 
-                        <li class="nav-item"><a href="/Admin/IndexDispatch" class="nav-link">Dispatchers</a></li>
+                <li class="nav-item"><a href="/Admin/IndexDispatch" class="nav-link">Dispatchers</a></li>
 
-                        <li class="nav-item"><a href="/Admin/Index" class="nav-link">Drivers</a></li>
-                        <li class="nav-item"><a href="/Admin/IndexLogin" class="nav-link">Users</a></li>
-                        <li class="nav-item"><a href="/Admin/ViewFeedback" class="nav-link">Feedback</a></li>
-                        <li class="nav-item"><a href="/Admin/ManagePay" class="nav-link">ManagePay</a></li>
-                        <li class="nav-item">                    <a href="/Admin/DisplayQuote">View Quote</a></li>*@
+                <li class="nav-item"><a href="/Admin/Index" class="nav-link">Drivers</a></li>
+                <li class="nav-item"><a href="/Admin/IndexLogin" class="nav-link">Users</a></li>
+                <li class="nav-item"><a href="/Admin/ViewFeedback" class="nav-link">Feedback</a></li>
+                <li class="nav-item"><a href="/Admin/ManagePay" class="nav-link">ManagePay</a></li>
+                <li class="nav-item">                    <a href="/Admin/DisplayQuote">View Quote</a></li>*@
 
                         @*Logout*@
                         <li class="nav-item">
-                            <a href="#" onclick="document.forms[0].submit();">Logout</a>
+                            <a href="#" onclick="document.forms[0].submit();"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
                             @*Logout*@
                     </ul>
                 </div>
@@ -145,16 +171,16 @@
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="/Admin/Dashboard">Home</a>
-            <a href="/Admin/Index">Drivers</a>
-            <a href="/Admin/IndexDispatch">Dispatchers</a>
-            <a href="/Admin/IndexLogin">Registration</a>
-            <a href="/Admin/ManagePay">Pay Statement</a>
-            <a href="/Admin/DriverApplication">View Driver Form</a>
-            <a href="/Admin/DisplayQuote">View Quote</a>
-            <a href="/Admin/ViewFeedback">Feedback</a>
+            <a href="/Admin/Dashboard"><i class="fa fa-fw fa-home"></i>Home</a>
+            <a href="/Admin/Index"><i class="fa fa-fw fa-users"></i>Drivers</a>
+            <a href="/Admin/IndexDispatch"<i class="fa fa-fw fa-users"></i>Dispatchers</a>
+            <a href="/Admin/IndexLogin"><i class="fa fa-fw fa-user-plus"></i>Registration</a>
+            <a href="/Admin/ManagePay"><i class="fa fa-fw fa-credit-card"></i>Pay Statement</a>
+            <a href="/Admin/DriverApplication"><i class="fa fa-fw fa-inbox"></i>Driver Form</a>
+            <a href="/Admin/DisplayQuote"><i class="fa fa-fw fa-file"></i>View Quote</a>
+            <a href="/Admin/ViewFeedback"><i class="fa fa-fw fa-comments"></i>Feedback</a>
             @*Logout*@
-            <a href="#" onclick="document.forms[0].submit();">Logout</a>
+            <a href="#" onclick="document.forms[0].submit();"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
             @*Logout*@
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 

@@ -35,13 +35,11 @@
 
 
         body {
-        
-            font-family: Arial, Helvetica, sans-serif;
-                         background-attachment: fixed;
-                             background-size: cover;
-                               background-image: url('../../Content/images/annie-spratt-0ZPSX_mQ3xI-unsplash.jpg');
-                           /*background-color: #b2cecf;*/
-                          
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-attachment: fixed;
+            background-size: cover;
+            background-image: url('../../Content/images/annie-spratt-0ZPSX_mQ3xI-unsplash.jpg');
+            /*background-color: #b2cecf;*/
         }
 
 
@@ -247,7 +245,7 @@
                     })
                     <div class="col-md-10">
 
-                        @Html.DropDownListFor(model => model.equipment_type, Model.equipmentList, "--Select--")
+                        @Html.DropDownListFor(model => model.equipment_type, Model.equipmentList, "-------Select-------")
 
                         @Html.ValidationMessageFor(model => model.equipment_type, "", new { @class = "text-danger" })
                     </div>

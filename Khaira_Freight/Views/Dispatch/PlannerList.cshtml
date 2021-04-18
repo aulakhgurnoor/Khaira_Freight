@@ -26,7 +26,7 @@
         }
     </style >
 
-    <div style=" width:100%;       background-color:lavender;
+<div style=" width:100%;       background-color:lavender;
     padding: 30px;
     margin: 50px auto;
     box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
@@ -34,114 +34,117 @@
     border: 6px solid #305A72;
     min-width:min-content;
     ">
-    <h2 id="btn_style" > Planner List</h2 >
+    <h2 id="btn_style"> Planner List</h2>
 
     <p>
-    @Html.ActionLink("Add New", "AddPlanner")
-    </p >
+        @Html.ActionLink("Add New", "AddPlanner")
+    </p>
+    <p>
+        <a href="/Dispatch/Calender" class="nav-link"><i class="fa fa-fw fa-calendar"></i>Calender</a>
+    </p>
     @using (Html.BeginForm("PlannerList", "Dispatch", FormMethod.Get))
+    {
+        <p>
+            Search by Driver/Status/Trailer : @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input class="btn-primary" type="submit" value="Search" />
+        </p>
+    }
+    <table class="table table-striped breadcrumb">
+        <tr>
+            @*<th >
+                Event ID
+                </th >*@
+            <th>
+                Status
+            </th>
+            <th>
+                Trip
+            </th>
+            <th>
+                Activity
+            </th>
+            @*<th >
+                Driver ID
+                </th >*@
+            <th>
+                Driver Name
+            </th>
+            <th>
+                City
+            </th>
+            <th>
+                Province
+            </th>
+            <th>
+                Truck#
+            </th>
+            <th>
+                Trailer#
+            </th>
+
+            <th>
+                @Html.ActionLink("Start Date", "PlannerList", new { sortOrder = ViewBag.StartSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+
+            <th>
+                @Html.ActionLink("Due Date", "PlannerList", new { sortOrder = ViewBag.DueSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th> </th>
+        </tr>
+        @foreach (var item in Model)
         {
-             <p >
-    Search by Driver/Status/Trailer : @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-    <input class="btn-primary" type="submit" value="Search" / >
-    </p >
+            <tr>
+                @*<td >
+                    @Html.DisplayFor(modelItem => item.event_id)
+                    </td >*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.trip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.activity)
+                </td>
+                @*<td >
+                    @Html.DisplayFor(modelItem => item.driver_id)
+                    </td >*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.driver_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.city)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.province)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.truck)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.trailer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.start_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.due_date)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditPlanner", new { id = item.event_id }) |
+                    @Html.ActionLink("Details", "PlannerDetails", new { id = item.event_id }) |
+                    @Html.ActionLink("Delete", "DeletePlanner", new { id = item.event_id })
+                </td>
+            </tr>
         }
-    <table class="table table-striped breadcrumb" >
-    <tr >
-    @*<th >
-    Event ID
-    </th >*@
-    <th >
-    Status
-    </th >
-    <th >
-    Trip
-    </th >
-    <th >
-    Activity
-    </th >
-    @*<th >
-    Driver ID
-    </th >*@
-    <th >
-    Driver Name
-    </th >
-    <th >
-    City
-    </th >
-    <th >
-    Province
-    </th >
-    <th >
-    Truck#
-    </th >
-    <th >
-    Trailer#
-    </th >
-   
-    <th >
-    @Html.ActionLink("Start Date", "PlannerList", new { sortOrder = ViewBag.StartSortParm, currentFilter = ViewBag.CurrentFilter })
-    </th >
-   
-    <th >
-    @Html.ActionLink("Due Date", "PlannerList", new { sortOrder = ViewBag.DueSortParm, currentFilter = ViewBag.CurrentFilter })
-    </th >
-    <th > </th >
-    </tr >
-    @foreach (var item in Model)
-            {
-                 <tr >
-    @*<td >
-    @Html.DisplayFor(modelItem => item.event_id)
-    </td >*@
-    <td >
-    @Html.DisplayFor(modelItem => item.status)
-    </td >
-    <td >
-    @Html.DisplayFor(modelItem => item.trip)
-    </td >
-    <td >
-    @Html.DisplayFor(modelItem => item.activity)
-    </td >
-    @*<td >
-    @Html.DisplayFor(modelItem => item.driver_id)
-    </td >*@
-    <td >
-    @Html.DisplayFor(modelItem => item.driver_name)
-    </td >
-    <td >
-    @Html.DisplayFor(modelItem => item.city)
-    </td >
-    <td >
-    @Html.DisplayFor(modelItem => item.province)
-    </td >
-    <td >
-    @Html.DisplayFor(modelItem => item.truck)
-    </td >
-    <td >
-    @Html.DisplayFor(modelItem => item.trailer)
-    </td >
-    <td >
-    @Html.DisplayFor(modelItem => item.start_date)
-    </td >
-    <td >
-    @Html.DisplayFor(modelItem => item.due_date)
-    </td >
-    <td >
-    @Html.ActionLink("Edit", "EditPlanner", new { id = item.event_id }) |
-    @Html.ActionLink("Details", "PlannerDetails", new { id = item.event_id }) |
-    @Html.ActionLink("Delete", "DeletePlanner", new { id = item.event_id })
-    </td >
-    </tr >
-            }
-    </table >
-    <br / >
+    </table>
+    <br />
 
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
     @Html.PagedListPager(Model, page => Url.Action("PlannerList",
             new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
     <div>
-    @Html.ActionLink("Reset", "PlannerList")
-    </div >
-    </div >
+        @Html.ActionLink("Reset", "PlannerList")
+    </div>
+</div>
 
